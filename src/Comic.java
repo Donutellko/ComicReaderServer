@@ -30,17 +30,19 @@ public class Comic {
 
     /**
      * Класс страницы комикса.
-     * Содержит информацию о себе, ссылку на её страницу, url изображения и локальный путь к изображению
+     * Подразумевается, что создаётся из
+     * @see UniversalParser.ParsedPage
      */
-    public static class Page {
-        String name, description, link, image_link, image_path;
+    @SuppressWarnings("WeakerAccess")
+    static class Page {
+        String title, description, thisUrl, imgUrl, bonusUrl;
 
-        // example: new Comic.Page(245, "Dad jokes", "I feel like we shouldn't consider bonobos as sapient until they can write something about human life as a sunset or the end of a long road or something.", "https://www.smbc-comics.com/comic/dad-jokes", "https://www.smbc-comics.com/comics/1450366623-20151217.png");
-        public Page(String name, String description, String link, String image_link) {
-            this.name = name;
-            this.description = description;
-            this.link = link;
-            this.image_link = image_link;
+        Page(UniversalParser.ParsedPage page) {
+            this.title       = page.title;
+            this.description = page.description;
+            this.thisUrl     = page.thisUrl;
+            this.imgUrl      = page.imgUrl;
+            this.bonusUrl    = page.bonusUrl;
         }
     }
 }
