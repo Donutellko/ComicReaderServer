@@ -2,19 +2,16 @@ package Parsers;
 
 public abstract class UniversalParser {
 
-	ParsedPage parsedPage = new ParsedPage();
-	String url;
+	private ParsedPage parsedPage = new ParsedPage();
 
 	UniversalParser(String url, String html) {
-		this.url = url;
 		String title = unescapeUtfAndHtml(getTitle(html));
 		String description = unescapeUtfAndHtml(getDescription(html));
-		String thisUrl = getThisUrl(html);
 		String imgUrl = getImgUrl(html);
 		String bonusUrl = getBonusUrl(html);
 		String nextUrl = getNextUrl(html);
 
-		parsedPage.set(title, description, thisUrl, imgUrl, bonusUrl, nextUrl);
+		parsedPage.set(title, description, url, imgUrl, bonusUrl, nextUrl);
 	}
 
 	/** @param html HTML-код страницы
@@ -22,7 +19,6 @@ public abstract class UniversalParser {
 
 	abstract String getTitle(String html);
 	abstract String getDescription(String html);
-	abstract String getThisUrl(String html);
 	abstract String getImgUrl(String html);
 	abstract String getBonusUrl(String html);
 	abstract String getNextUrl(String html);
@@ -47,31 +43,39 @@ public abstract class UniversalParser {
 	 * а id уникален, то имеет смысл искать, опираясь на id.
 	 * */
 	static String getByBegin(String where, String from, String to) {
-		int begin = where.indexOf(from);
+		int begin = where.indexOf(from) + from.length();
 		int end = where.indexOf(to, begin);
 
-		return end == -1 || begin == -1 ? null :  where.substring(begin + from.length(), end);
+		return end < 0 || begin < 0 ? null :  where.substring(begin, end);
 	}
 
 	/**
 	 * Метод заменяет коды символов на сами символы, например, \u0026#39 на '
 	 */
-	static String unescapeUtfAndHtml(String s) {
+	private static String unescapeUtfAndHtml(String s) {
+		if (s == null) return null;
 		String r;
 		r = s.replaceAll("\\u0026", "&");
 		r = r.replaceAll("&#39;", "'");
 		r = r.replaceAll("&quot;", "\"");
+
+		r = r.replaceAll("<strong>", "");
+		r = r.replaceAll("</strong>", "");
+		r = r.replaceAll("<em>", "");
+		r = r.replaceAll("</em>", "");
+		r = r.replaceAll("<br>", "");
+
 		return r;
 	}
 
 	public static class ParsedPage {
 		public String title, description, thisUrl, imgUrl, bonusUrl, nextUrl;
 
-		public ParsedPage() {
+		ParsedPage() {
 			title = description = imgUrl = bonusUrl = thisUrl = nextUrl = null;
 		}
 
-		public void set(String title, String description, String thisUrl, String imgUrl, String bonusUrl, String nextUrl) {
+		void set(String title, String description, String thisUrl, String imgUrl, String bonusUrl, String nextUrl) {
 			this.title = title;
 			this.description = description;
 			this.thisUrl = thisUrl;

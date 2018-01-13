@@ -9,7 +9,6 @@ public class XkcdParser extends UniversalParser {
 <img src="//imgs.xkcd.com/comics/barrel_cropped_(1).jpg" title="Don&#39;t we all." alt="Barrel - Part 1" />
 </div>
 
-
  */
 
 	private final static String BASE_URL = "https://xkcd.com";
@@ -27,11 +26,6 @@ public class XkcdParser extends UniversalParser {
 	String getDescription(String html) {
 		String tmp = UniversalParser.getByBegin(html, "<div id=\"comic\">", "</div>");
 		return UniversalParser.getByBegin(tmp, "title=\"", "\" alt=");
-	}
-
-	@Override
-	String getThisUrl(String html) {
-		return UniversalParser.getByBegin(html, "Permanent link to this comic: ", "<br />");
 	}
 
 	@Override

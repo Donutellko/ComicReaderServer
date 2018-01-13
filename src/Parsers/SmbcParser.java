@@ -35,10 +35,6 @@ bonus: <div id="aftercomic" onclick="toggleBlock(&quot;aftercomic&quot;)" style=
 		return img_tag.substring(0, img_tag.indexOf('"'));
 	}
 
-	@Override
-	public String getThisUrl(String html) {
-		return null;
-	}
 
 	@Override
 	public String getImgUrl(String html) {
