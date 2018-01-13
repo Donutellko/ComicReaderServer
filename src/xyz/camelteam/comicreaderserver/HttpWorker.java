@@ -1,3 +1,5 @@
+package xyz.camelteam.comicreaderserver;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -17,6 +19,7 @@ public class HttpWorker {
 			try {
 				URL url = new URL(url_s);
 				uc = url.openConnection();
+				uc.addRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 				uc.setConnectTimeout(1000);
 				uc.connect();
 				reader = new BufferedReader(new InputStreamReader(uc.getInputStream()));

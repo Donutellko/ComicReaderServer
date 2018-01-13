@@ -1,10 +1,14 @@
+package Parsers;
+
 public abstract class UniversalParser {
 
 	ParsedPage parsedPage = new ParsedPage();
+	String url;
 
-	UniversalParser(String html) {
-		String title = getTitle(html);
-		String description = getDescription(html);
+	UniversalParser(String url, String html) {
+		this.url = url;
+		String title = unescapeUtfAndHtml(getTitle(html));
+		String description = unescapeUtfAndHtml(getDescription(html));
 		String thisUrl = getThisUrl(html);
 		String imgUrl = getImgUrl(html);
 		String bonusUrl = getBonusUrl(html);
@@ -23,7 +27,7 @@ public abstract class UniversalParser {
 	abstract String getBonusUrl(String html);
 	abstract String getNextUrl(String html);
 
-	ParsedPage getParsedPage() {
+	public ParsedPage getParsedPage() {
 		return parsedPage;
 	}
 
@@ -49,7 +53,18 @@ public abstract class UniversalParser {
 		return end == -1 || begin == -1 ? null :  where.substring(begin + from.length(), end);
 	}
 
-	class ParsedPage {
+	/**
+	 * Метод заменяет коды символов на сами символы, например, \u0026#39 на '
+	 */
+	static String unescapeUtfAndHtml(String s) {
+		String r;
+		r = s.replaceAll("\\u0026", "&");
+		r = r.replaceAll("&#39;", "'");
+		r = r.replaceAll("&quot;", "\"");
+		return r;
+	}
+
+	public static class ParsedPage {
 		public String title, description, thisUrl, imgUrl, bonusUrl, nextUrl;
 
 		public ParsedPage() {

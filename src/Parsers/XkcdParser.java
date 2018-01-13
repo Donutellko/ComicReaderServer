@@ -1,3 +1,5 @@
+package Parsers;
+
 public class XkcdParser extends UniversalParser {
 
 /*
@@ -12,29 +14,29 @@ public class XkcdParser extends UniversalParser {
 
 	private final static String BASE_URL = "https://xkcd.com";
 
-	XkcdParser(String html) {
-		super(html);
+	XkcdParser(String url, String html) {
+		super(url, html);
 	}
 
 	@Override
 	String getTitle(String html) {
-		return getByBegin(html, "<title>xkcd: ", "</title>");
+		return UniversalParser.getByBegin(html, "<title>xkcd: ", "</title>");
 	}
 
 	@Override
 	String getDescription(String html) {
-		String tmp = getByBegin(html, "<div id=\"comic\">", "</div>");
-		return getByBegin(tmp, "title=\"", "\" alt=");
+		String tmp = UniversalParser.getByBegin(html, "<div id=\"comic\">", "</div>");
+		return UniversalParser.getByBegin(tmp, "title=\"", "\" alt=");
 	}
 
 	@Override
 	String getThisUrl(String html) {
-		return getByBegin(html, "Permanent link to this comic: ", "<br />");
+		return UniversalParser.getByBegin(html, "Permanent link to this comic: ", "<br />");
 	}
 
 	@Override
 	String getImgUrl(String html) {
-		return getByBegin(html, "Image URL (for hotlinking/embedding): ","\n");
+		return UniversalParser.getByBegin(html, "Image URL (for hotlinking/embedding): ","\n");
 	}
 
 	@Override
@@ -44,7 +46,8 @@ public class XkcdParser extends UniversalParser {
 
 	@Override
 	String getNextUrl(String html) {
-		return BASE_URL + getByBegin(html, "<a rel=\"next\" href=\"", "/\" accesskey=\"n\">");
+		String tmp = UniversalParser.getByBegin(html, "<a rel=\"next\" href=\"", "/\" accesskey=\"n\">");
+		return tmp == null ? null : BASE_URL + tmp;
 	}
 
 }
