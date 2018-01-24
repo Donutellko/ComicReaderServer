@@ -1,16 +1,12 @@
 package xyz.camelteam.comicreaderserver;
 
-import Parsers.ComicslateParser;
-import Parsers.SmbcParser;
-import Parsers.UniversalParser;
-import Parsers.XkcdParser;
+import Parsers.*;
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 
 public class Main {
-    final static String server_url = "http://donutellko.azurewebsites.net/";
 
     public static void main(String[] args) {
     	File workingPath = new File("Results");
@@ -20,59 +16,91 @@ public class Main {
     	}
 		File pagesPath = new File(workingPath + "/pages/");
 
-		String DEFAULT = "lwhag";
-    	String parameter = args.length == 0 ? DEFAULT : args[0];
+		String DEFAULT = "enfreefall";
+    	String parameter = args.length == 0 ? DEFAULT : args[0]; // Чтоб можно было передавать в качестве аргумента программе
     	switch (parameter.toUpperCase()) {
+			case "-h" : case "--help" :
+				System.out.println("Use comic name to update it or 'comiclist; to update it. Comic names:");
+				for (Comic c : Defaults.comicsList) System.out.println(c.shortName + "\t: " + c.name);
+				break;
 			case "COMICLIST":
-				FileWorker.save(new File(FileWorker.getCurrentPath() + "/Results/comiclist"), new Gson().toJson(Defaults.comicsList));
+				FileWorker.save(new File(FileWorker.getCurrentPath() + "/Results/comiclist"), Defaults.getComicsList());
+				System.out.println("Saved comiclist.");
 				break;
-			case "SMBC":
-				savePages(pagesPath, SmbcParser.class, "SMBC", "https://www.smbc-comics.com/comic/2002-09-05");
+			case "ENSMBC":
+				savePages(pagesPath, SmbcParser.class, "enSMBC", "https://www.smbc-comics.com/comic/2002-09-05");
 				break;
-			case "XKCD":
-				savePages(pagesPath, XkcdParser.class, "XKCD", "https://xkcd.com/1/");
+			case "ENXKCD":
+				savePages(pagesPath, XkcdParser.class, "enXKCD", "https://xkcd.com/1");
 				break;
-			case "FREEFALL":
-				saveComicslatePages(pagesPath, "Freefall", "sci-fi/freefall/");
+			case "RUXKCD":
+				savePages(pagesPath, XkcdRuParser.class, "ruXKCD", "https://xkcd.ru/1");
 				break;
-			case "GAMERCAT":
-				saveComicslatePages(pagesPath, "GaMERCaT", "gamer/gamercat/");
+			case "ENFREEFALL":
+				savePages(pagesPath, ComicslateParser.class,"enFreefall", "https://comicslate.org/sci-fi/freefall/0001");
 				break;
-			case "LWHAG":
-				saveComicslatePages(pagesPath, "LWHAG", "gamer/lwhag/");
+			case "ENGAMERCAT":
+				savePages(pagesPath, ComicslateParser.class, "enGaMERCaT", "https://comicslate.org/gamer/gamercat/0001");
 				break;
-			case "TWOKINDS":
-				saveComicslatePages(pagesPath, "TwoKinds", "furry/2kinds/");
+			case "ENTWOKINDS":
+				savePages(pagesPath, ComicslateParser.class, "enTwoKinds", "https://comicslate.org/furry/2kinds/0001");
+				break;
+			case "RUSAMMY":
+				savePages(pagesPath, ComicslateParser.class, "ruSamy", "https://comicslate.org/sci-fi/sammy/0001");
+				break;
+			case "ENLWHAG":
+				savePages(pagesPath, ComicslateParser.class, "enLWHAG", "https://comicslate.org/gamer/lwhag/0001");
+				break;
+			case "RULWHAG":
+				savePages(pagesPath, AcomicsParser.class, "ruLWHAG", "https://acomics.ru/~LwHG/1");
+				break;
+			case "RUOWLTURD":
+				savePages(pagesPath, AcomicsParser.class, "ruOwlturd", "https://acomics.ru/~owlturd/1");
+				break;
+			case "RUDOODLETIME":
+				savePages(pagesPath, AcomicsParser.class, "ruDoodleTime", "https://acomics.ru/~doodle-time/1");
+				break;
+			case "RUGAMERCAT":
+				savePages(pagesPath, AcomicsParser.class, "ruGaMERCaT", "https://acomics.ru/~thegamercat/1");
 				break;
 			default:
-				System.out.println("Unknown parameter. You should use comics' short names (i.e. SMBC, XKCD, SeqArt, GaMERCaT, LWHAG...).");
+			System.out.println("Unknown parameter. Use '-h' parameter to see, what you can do. ");
 		}
-
-        System.out.println("Done");
     }
 
-	public static <T extends UniversalParser> void savePages(File path, Class<T> tClass, String shortName, String url) {
+	/**
+	 * @param path куда сохранять (или аппендить)
+	 * @param tClass какой парсер использовать
+	 * @param shortName краткое имя
+	 * @param url Url начала по умолчанию (используется, если файл не существует), иначе продолжаем с последнего записанного
+	 */
+	private static <T extends UniversalParser> void savePages(File path, Class<T> tClass, String shortName, String url) {
     	File file = new File(path + "/" + shortName);
+    	boolean create = true;
 		if (file.exists()) {
 			String pages = FileWorker.read(file) + "]";
-			if (pages != null) {
+			if (pages.length() > 5) {
+				create = false;
 				Comic.Page[] p = new Gson().fromJson(pages, Comic.Page[].class);
 				url = append(tClass, null, p[p.length - 2].thisUrl); // Просто получаем ссылку на следующий
 			}
-		} else {
-			FileWorker.save(file, "[");
 		}
 
+		if (create) {
+			FileWorker.save(file, "[\n");
+		}
+
+		int count = 0;
 		while (url != null && url.length() > 0) {
 			url = append(tClass, file, url);
+			count++;
 		}
-
-		// FileWorker.append(file, "]"); // По идее, это не нужно и позволит просто аппендить новые стрнаицы
+		System.out.println(count == 0 ? "No new pages." : "Added pages: " + count);
 	}
 
     private static <T extends UniversalParser> String append(Class<T> tClass, File file, String url) {
     	String html = HttpWorker.getHtml(url);
-		try {
+		if (html != null && html.length() > 0) try {
 			//UniversalParser.ParsedPage parsedPage = tClass.getDeclaredConstructor(String.class).newInstance(html).getParsedPage();
 			Constructor c = tClass.getDeclaredConstructor(String.class, String.class);
 			c.setAccessible(true);
@@ -82,26 +110,6 @@ public class Main {
 			return parsedPage.nextUrl;
 		} catch (Exception e) { e.printStackTrace(); }
 
-
 		return null;
-	}
-
-	private static void saveComicslatePages(File path, String shortName, String url_part) {
-    	File file = new File(path.getAbsolutePath() + "/" + shortName);
-//    	if (!file.exists())
-    		FileWorker.save(file, "["); // Временно, пока не написан нормальный алгоритм парсинга с Comicslate
-
-    	new ComicslateParser(url_part) {
-			@Override
-			protected String getHtml(String url) {
-				return HttpWorker.getHtml(url);
-			}
-
-			@Override
-			protected void append(File f, String s) {
-				FileWorker.append(f, s);
-			}
-		}.savePages(file);
-    	// FileWorker.append(file, "]"); // По идее, это не нужно и позволит просто аппендить новые стрнаицы
 	}
 }

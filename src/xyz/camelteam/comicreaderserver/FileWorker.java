@@ -41,8 +41,6 @@ public class FileWorker {
 				s = br.readLine();
 			} while (s != null);
 			return result.toString();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

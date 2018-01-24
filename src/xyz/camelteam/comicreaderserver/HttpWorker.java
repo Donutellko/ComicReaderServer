@@ -5,16 +5,16 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class HttpWorker {
+class HttpWorker {
 
-	public static String getHtml(String url_s) {
+	static String getHtml(String url_s) {
 		System.out.println("Getting " + url_s);
 
 		String result = null;
 
 		try {
 			BufferedReader reader = null;
-			URLConnection uc = null;
+			URLConnection uc;
 
 			try {
 				URL url = new URL(url_s);
@@ -30,8 +30,7 @@ public class HttpWorker {
 					buffer.append(chars, 0, read);
 
 				result = buffer.toString();
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ignored) {
 			} finally {
 				if (reader != null)
 					reader.close();

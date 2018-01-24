@@ -4,7 +4,8 @@ import Parsers.UniversalParser;
 
 @SuppressWarnings("WeakerAccess")
 
-/** Классы, используемые для создания JSON-файлов комиксов и страниц.
+/**
+ * Классы, используемые для создания JSON-файлов комиксов и страниц.
  */
 public class Comic {
     public String name, shortName, description, lang, link;
@@ -23,6 +24,14 @@ public class Comic {
         this.shortName = shortName;
         this.lang = lang;
         this.description = description;
+        this.link = link;
+        timestamp = 0L;
+    }
+
+    public Comic(String name, String shortName, String lang, String link) {
+        this.name = name;
+        this.shortName = shortName;
+        this.lang = lang;
         this.link = link;
         timestamp = 0L;
     }
