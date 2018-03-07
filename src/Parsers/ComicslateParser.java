@@ -32,7 +32,7 @@ public class ComicslateParser extends UniversalParser {
 
 	@Override
 	String getNextUrl(String html) {
-		String tmp = getByEnd(html, "<a href=\"", "?purge=true\" accesskey=\"n\" id=\"navnext\"");
-		return "https://comicslate.org" + tmp;
+		String url = getByEnd(html, "<a href=\"", "?purge=true\" accesskey=\"n\" id=\"navnext\"");
+		return url == null ? null : "https://comicslate.org" + url;
 	}
 }

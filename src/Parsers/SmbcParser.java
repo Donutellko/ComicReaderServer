@@ -26,31 +26,31 @@ bonus: <div id="aftercomic" onclick="toggleBlock(&quot;aftercomic&quot;)" style=
 
 	@Override
 	public String getTitle(String html) {
-		return UniversalParser.getByBegin(html, "<title>Saturday Morning Breakfast Cereal - ", "</title>");
+		return getByBegin(html, "<title>Saturday Morning Breakfast Cereal - ", "</title>");
 	}
 
 	@Override
 	public String getDescription(String html) {
-		String img_tag = UniversalParser.getByEnd(html, IMG_BEGIN, IMG_END);
+		String img_tag = getByEnd(html, IMG_BEGIN, IMG_END);
 		return img_tag.substring(0, img_tag.indexOf('"'));
 	}
 
 
 	@Override
 	public String getImgUrl(String html) {
-		String img_tag = UniversalParser.getByEnd(html, IMG_BEGIN, IMG_END);
+		String img_tag = getByEnd(html, IMG_BEGIN, IMG_END);
 		String img_tmp = img_tag.substring(img_tag.lastIndexOf('"') + 1);
 		return BASE_URL + img_tmp;
 	}
 
 	@Override
 	public String getBonusUrl(String html) {
-		String bonus_tmp = UniversalParser.getByBegin(html, BONUS_BEGIN, BONUS_END);
+		String bonus_tmp = getByBegin(html, BONUS_BEGIN, BONUS_END);
 		return bonus_tmp == null ? null : BASE_URL + bonus_tmp;
 	}
 
 	@Override
 	public String getNextUrl(String html) {
-		return UniversalParser.getByEnd(html, NEXT_BEGIN, NEXT_END);
+		return getByEnd(html, NEXT_BEGIN, NEXT_END);
 	}
 }

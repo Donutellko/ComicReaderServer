@@ -1,4 +1,4 @@
-package xyz.camelteam.comicreaderserver;
+package xyz.donutellko.comicreaderserver;
 
 import com.google.gson.Gson;
 

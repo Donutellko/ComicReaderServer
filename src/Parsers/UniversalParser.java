@@ -3,8 +3,10 @@ package Parsers;
 public abstract class UniversalParser {
 
 	private ParsedPage parsedPage = new ParsedPage();
+	String url;
 
 	UniversalParser(String url, String html) {
+		this.url = url;
 		String title = unescapeUtfAndHtml(getTitle(html));
 		String description = unescapeUtfAndHtml(getDescription(html));
 		String imgUrl = getImgUrl(html);
