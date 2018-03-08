@@ -2,7 +2,7 @@ package xyz.donutellko.comicreaderserver;
 
 import java.io.*;
 
-public class FileWorker {
+public class _FileWorker {
 	static void save(File file, String text) {
 		//System.out.println(file.getAbsolutePath());
 		file.getParentFile().mkdirs();

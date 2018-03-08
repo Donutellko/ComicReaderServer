@@ -73,7 +73,7 @@ public abstract class UniversalParser {
 	public static class ParsedPage {
 		public String title, description, thisUrl, imgUrl, bonusUrl, nextUrl;
 
-		ParsedPage() {
+		public ParsedPage() {
 			title = description = imgUrl = bonusUrl = thisUrl = nextUrl = null;
 		}
 

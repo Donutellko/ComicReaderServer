@@ -1,7 +1,7 @@
 package Parsers;
 
-public class XkcdRuParser extends UniversalParser {
-	XkcdRuParser(String url, String html) {
+public class RuXkcdParser extends UniversalParser {
+	RuXkcdParser(String url, String html) {
 		super(url, html);
 	}
 

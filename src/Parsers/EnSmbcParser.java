@@ -1,6 +1,6 @@
 package Parsers;
 
-public class SmbcParser extends UniversalParser {
+public class EnSmbcParser extends UniversalParser {
 
 /*
 title: <title>Saturday Morning Breakfast Cereal - Know Your Linguistic Philosophies</title>
@@ -20,7 +20,7 @@ bonus: <div id="aftercomic" onclick="toggleBlock(&quot;aftercomic&quot;)" style=
 			BONUS_BEGIN = "<div id=\"aftercomic\" onclick=\"toggleBlock(&quot;aftercomic&quot;)\" style=\"\" class=\"mobilehide\">\n   <img src=\"//smbc-comics.com",
 			BONUS_END = "\">\n</div>";
 
-	SmbcParser(String url, String html) {
+	EnSmbcParser(String url, String html) {
 		super(url, html);
 	}
 

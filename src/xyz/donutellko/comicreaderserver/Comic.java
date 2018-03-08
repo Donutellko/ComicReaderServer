@@ -8,7 +8,7 @@ import Parsers.UniversalParser;
  * Классы, используемые для создания JSON-файлов комиксов и страниц.
  */
 public class Comic {
-    public String name, shortName, description, lang, link;
+    public String name, shortName, author, description, lang, mainUrl, initUrl;
     long timestamp;
 
 	/**
@@ -17,22 +17,22 @@ public class Comic {
 	 * @param shortName Краткое имя (не более 10 символов без пробелов и левых символов), используется для создания файлов
 	 * @param description Описание комикса
 	 * @param lang Язык комикса (два символа заглавными буквами)
-	 * @param link Ссылка на главную страницу официального сайта комикса
+	 * @param mainUrl Ссылка на главную страницу официального сайта комикса
 	 */
-    public Comic(String name, String shortName, String description, String lang, String link) {
+    public Comic(String name, String shortName, String description, String lang, String mainUrl) {
         this.name = name;
         this.shortName = shortName;
         this.lang = lang;
         this.description = description;
-        this.link = link;
+        this.mainUrl = mainUrl;
         timestamp = 0L;
     }
 
-    public Comic(String name, String shortName, String lang, String link) {
+    public Comic(String name, String shortName, String lang, String mainUrl) {
         this.name = name;
         this.shortName = shortName;
         this.lang = lang;
-        this.link = link;
+        this.mainUrl = mainUrl;
         timestamp = 0L;
     }
 
@@ -43,8 +43,10 @@ public class Comic {
      */
     public static class Page {
         public String title, description, thisUrl, imgUrl, bonusUrl;
+        public int number;
 
-        public Page(UniversalParser.ParsedPage page) {
+        public Page(int number, UniversalParser.ParsedPage page) {
+        	this.number = number;
             this.title       = page.title;
             this.description = page.description;
             this.thisUrl     = page.thisUrl;

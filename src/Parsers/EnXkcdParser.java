@@ -1,6 +1,6 @@
 package Parsers;
 
-public class XkcdParser extends UniversalParser {
+public class EnXkcdParser extends UniversalParser {
 
 /*
 <li><a rel="next" href="/2/" accesskey="n">Next &gt;</a></li>
@@ -13,7 +13,7 @@ public class XkcdParser extends UniversalParser {
 
 	private final static String BASE_URL = "https://xkcd.com";
 
-	XkcdParser(String url, String html) {
+	EnXkcdParser(String url, String html) {
 		super(url, html);
 	}
 
