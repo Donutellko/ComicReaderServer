@@ -38,7 +38,7 @@ public class Comic {
 
     /**
      * Класс страницы комикса.
-     * Подразумевается, что он создаётся исключительно во время парсинга из из
+     * Подразумевается, что он создаётся исключительно во время парсинга из UniversalParser
      * @see UniversalParser.ParsedPage
      */
     public static class Page {

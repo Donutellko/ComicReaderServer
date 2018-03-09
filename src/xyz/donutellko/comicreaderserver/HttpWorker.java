@@ -8,7 +8,7 @@ import java.net.URLConnection;
 class HttpWorker {
 
 	static String getHtml(String url_s) {
-		System.out.println("Getting " + url_s);
+		System.out.println("\tGetting " + url_s);
 
 		String result = null;
 

@@ -17,8 +17,8 @@ bonus: <div id="aftercomic" onclick="toggleBlock(&quot;aftercomic&quot;)" style=
 			NEXT_END = "\" class=\"next\"",
 			IMG_BEGIN = "<img title=\"",
 			IMG_END = "\" id=\"cc-comic\"",
-			BONUS_BEGIN = "<div id=\"aftercomic\" onclick=\"toggleBlock(&quot;aftercomic&quot;)\" style=\"\" class=\"mobilehide\">\n   <img src=\"//smbc-comics.com",
-			BONUS_END = "\">\n</div>";
+			BONUS_BEGIN = "<div id=\"aftercomic\"",
+			BONUS_END = ">\n</div>";
 
 	EnSmbcParser(String url, String html) {
 		super(url, html);
@@ -46,6 +46,8 @@ bonus: <div id="aftercomic" onclick="toggleBlock(&quot;aftercomic&quot;)" style=
 	@Override
 	public String getBonusUrl(String html) {
 		String bonus_tmp = getByBegin(html, BONUS_BEGIN, BONUS_END);
+		if (bonus_tmp != null)
+			bonus_tmp = getByBegin(bonus_tmp,".com", "\"");
 		return bonus_tmp == null ? null : BASE_URL + bonus_tmp;
 	}
 

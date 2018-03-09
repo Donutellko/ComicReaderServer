@@ -1,7 +1,7 @@
 package Parsers;
 
-public class enDilbertParser extends UniversalParser {
-	enDilbertParser(String url, String html) {
+public class EnDilbertParser extends UniversalParser {
+	EnDilbertParser(String url, String html) {
 		super(url, html);
 	}
 
