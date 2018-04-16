@@ -8,7 +8,8 @@ import Parsers.UniversalParser;
  * Классы, используемые для создания JSON-файлов комиксов и страниц.
  */
 public class Comic {
-    public String name, shortName, author, description, lang, mainUrl, initUrl;
+    // package-private, not available for parsers
+    String name, shortName, author, description, lang, mainUrl, initUrl;
     long timestamp;
 
 	/**
