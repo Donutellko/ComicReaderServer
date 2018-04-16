@@ -7,6 +7,8 @@ public abstract class UniversalParser {
 
 	UniversalParser(String url, String html) {
 		this.url = url;
+		preExecute();
+
 		String title = unescapeUtfAndHtml(getTitle(html));
 		String description = unescapeUtfAndHtml(getDescription(html));
 		String imgUrl = getImgUrl(html);
@@ -16,9 +18,13 @@ public abstract class UniversalParser {
 		parsedPage.set(title, description, url, imgUrl, bonusUrl, nextUrl);
 	}
 
+	/**
+	 * Метод позволяет выполнить код перед вызовом всех остальных функций
+	 */
+	protected void preExecute() {}
+
 	/** @param html HTML-код страницы
 	 * @return Название страницы */
-
 	abstract String getTitle(String html);
 	abstract String getDescription(String html);
 	abstract String getImgUrl(String html);

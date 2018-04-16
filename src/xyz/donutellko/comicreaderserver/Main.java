@@ -64,6 +64,7 @@ public class Main {
 			case "comicslate" 	: return ComicslateParser.class;
 			case "acomics" 		: return AcomicsParser.class;
 			case "readmanga" 	: return ReadmangaParser.class;
+			case "tf2old" 	    : return TeamfortressOldParser.class;
 			default: return null;
 		}
 	}
@@ -81,7 +82,7 @@ public class Main {
 		String nextUrl = initUrl;
 		if (page != null && page.thisUrl != null) nextUrl = getPage(tClass, page.thisUrl).nextUrl;
 
-		int max = testN;
+		int max = debug ? testN : -1;
 		int count = 1;
 		do {
 			tmppage = getPage(tClass, nextUrl);
@@ -93,7 +94,7 @@ public class Main {
 			page = new ComicDB.DbPage(tmppage);
 			ComicDB.addPage(comicId, page);
 			count++;
-		} while (tmppage.nextUrl != null && --max > 1);
+		} while (tmppage.nextUrl != null && --max != 1);
 		System.out.println("Added new pages: " + count);
 	}
 
