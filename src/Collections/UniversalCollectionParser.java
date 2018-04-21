@@ -2,10 +2,12 @@ package Collections;
 
 import xyz.donutellko.comicreaderserver.*;
 
+import java.util.ArrayList;
+
 public abstract class UniversalCollectionParser extends AbstractParser {
 
 	String url;
-	private Comic[] parsed;
+	private ArrayList<Comic> parsed;
 	private String nextUrl;
 
 	UniversalCollectionParser(String url, String html) {
@@ -14,10 +16,10 @@ public abstract class UniversalCollectionParser extends AbstractParser {
 		nextUrl = getNextUrl(html);
 	}
 
-	abstract Comic[] getComicList(String html);
+	abstract ArrayList<Comic> getComicList(String html);
 	abstract String getNextUrl(String html);
 
-	public Comic[] getParsed() {
+	public ArrayList<Comic> getList() {
 		return parsed;
 	}
 

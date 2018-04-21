@@ -18,28 +18,33 @@ public class EnXkcdParser extends UniversalParser {
 	}
 
 	@Override
-	String getTitle(String html) {
+	protected String getAlias() {
+		return "enxkcd";
+	}
+
+	@Override
+	protected String getTitle(String html) {
 		return UniversalParser.getByBegin(html, "<title>xkcd: ", "</title>");
 	}
 
 	@Override
-	String getDescription(String html) {
+	protected String getDescription(String html) {
 		String tmp = UniversalParser.getByBegin(html, "<div id=\"comic\">", "</div>");
 		return UniversalParser.getByBegin(tmp, "title=\"", "\" alt=");
 	}
 
 	@Override
-	String getImgUrl(String html) {
+	protected String getImgUrl(String html) {
 		return UniversalParser.getByBegin(html, "Image URL (for hotlinking/embedding): ","\n");
 	}
 
 	@Override
-	String getBonusUrl(String html) {
+	protected String getBonusUrl(String html) {
 		return null;
 	}
 
 	@Override
-	String getNextUrl(String html) {
+	protected String getNextUrl(String html) {
 		String tmp = UniversalParser.getByBegin(html, "<a rel=\"next\" href=\"", "/\" accesskey=\"n\">");
 		return tmp == null ? null : BASE_URL + tmp;
 	}

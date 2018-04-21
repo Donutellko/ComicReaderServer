@@ -3,7 +3,8 @@ package xyz.donutellko.comicreaderserver;
 public class AbstractParser {
 
 	/** Возвращает первый найденный фрагмент, полагая значение переменной to уникальной в тексте
-	 * То есть например если в коде имеется фрагмент «title="Text." id=unique_id » и нужно найти строку "Text.",
+	 * То есть например если в коде имеется фрагмент «title="Text." id=unique_id » и
+	 * нужно найти строку "Text.",
 	 * а id уникален, то имеет смысл искать, опираясь на id.
 	 * */
 	protected static String getByEnd(String html, String from, String to) {
@@ -14,8 +15,8 @@ public class AbstractParser {
 	}
 
 	/** Возвращает первый найденный фрагмент, полагая значение переменной from уникальной в тексте
-	 * То есть например если в коде имеется фрагмент «id=unique_id title="Text."» и нужно найти строку "Text.",
-	 * а id уникален, то имеет смысл искать, опираясь на id.
+	 * То есть например если в коде имеется фрагмент «id=unique_id title="Text."» и
+	 * нужно найти строку "Text.", а id уникален, то имеет смысл искать, опираясь на id.
 	 * */
 	protected static String getByBegin(String where, String from, String to) {
 		int begin = where.indexOf(from) + from.length();
@@ -39,6 +40,9 @@ public class AbstractParser {
 		r = r.replaceAll("<em>", "");
 		r = r.replaceAll("</em>", "");
 		r = r.replaceAll("<br>", "");
+
+		r = r.replaceAll("&lt;", "<");
+		r = r.replaceAll("&gt;", ">");
 
 		return r;
 	}

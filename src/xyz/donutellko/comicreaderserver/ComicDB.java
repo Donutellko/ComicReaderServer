@@ -27,7 +27,11 @@ public class ComicDB {
 
 			return p;
 		} catch (SQLException e) {
-			System.out.println("Failed to get last page for COMIC_ID=" + comicId + ". Hope it's because the table hasn't been created yet");
+			if (e.getMessage().contains("No"))
+				System.out.println("No such table COMIC_" + comicId);
+			else
+				System.out.println("Failed to get last page for COMIC_ID="
+						+ comicId + "\n" + e.getMessage());
 		}
 		return null;
 	}
@@ -56,7 +60,7 @@ public class ComicDB {
 	 * @throws SQLException в случае неудачи при добавлении в список
 	 */
 	public static void addComic(Comic c) throws SQLException {
-		addComic(c.name, c.lang, c.author, null, c.description, c.mainUrl, c.initUrl);
+		addComic(c.title, c.lang, c.author, c.source, c.description, c.main_url, c.init_url, c.timestamp);
 	}
 
 	/**
@@ -64,9 +68,13 @@ public class ComicDB {
 	 *
 	 * @throws SQLException в случае неудачи при добавлении в список
 	 */
-	static void addComic(String title, String lang, String author, String source, String description, String mainUrl, String initUrl) throws SQLException {
-		statmt.execute("insert into COMIC (NAME, LANG, AUTHOR, SOURCE, DESCRIPTION, MAIN_URL, INIT_URL) values (" +
-				escape(title) + "', '" + lang + "', '" + escape(author) + "', '" + source + "', '" + escape(description) + "', '" + mainUrl + "', '" + initUrl + ");");
+	static void addComic(String title, String lang, String author, String source, String description,
+						 String main_url, String init_url, long timestamp) throws SQLException {
+
+		statmt.execute("insert into COMIC (NAME, LANG, AUTHOR, SOURCE, DESCRIPTION, " +
+				"MAIN_URL, INIT_URL) values (" +
+				escape(title) + "', '" + lang + "', '" + escape(author) + "', '" + source
+				+ "', '" + escape(description) + "', '" + main_url + "', '" + init_url + ");");
 
 		int comicId = getComicId(title, lang, source);
 		createPagesTable(comicId);
@@ -82,7 +90,8 @@ public class ComicDB {
 	 * @throws SQLException
 	 */
 	public static int getComicId(String title, String lang, String source) throws SQLException {
-		resSet = statmt.executeQuery("select COMIC_ID from COMIC where (TITLE='" + title + "', LANG='" + lang + "', SOURCE='" + source + "');");
+		resSet = statmt.executeQuery("select COMIC_ID from COMIC where (" +
+				"TITLE='" + title + "', LANG='" + lang + "', SOURCE='" + source + "');");
 		return resSet.getInt("COMIC_ID");
 	}
 
@@ -102,9 +111,12 @@ public class ComicDB {
 	 *
 	 * @throws SQLException
 	 */
-	static void addPage(int comicId, String title, String desription, String imageUrl, String pageUrl, String bonusUrl) throws SQLException {
-		String sql = "insert into COMIC_" + comicId + " (TITLE, DESCRIPTION, IMAGE_URL, PAGE_URL, BONUS_URL) values ('" +
-				escape(title) + "', '" + escape(desription) + "', '" + imageUrl + "', '" + pageUrl + "', '" + bonusUrl + "');";
+	static void addPage(int comicId, String title, String desription, String imageUrl,
+						String pageUrl, String bonusUrl) throws SQLException {
+		String sql = "insert into COMIC_" + comicId
+				+ " (TITLE, DESCRIPTION, IMAGE_URL, PAGE_URL, BONUS_URL) values ('" +
+				escape(title) + "', '" + escape(desription) + "', '"
+				+ imageUrl + "', '" + pageUrl + "', '" + bonusUrl + "');";
 		statmt.execute(sql);
 	}
 

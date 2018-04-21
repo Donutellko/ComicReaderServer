@@ -7,30 +7,35 @@ public class ReadmangaParser extends UniversalParser {
 	}
 
 	@Override
-	String getTitle(String html) {
+	protected String getAlias() {
+		return "readmaga";
+	}
+
+	@Override
+	protected String getTitle(String html) {
 		String tmp = getByBegin(html, "<title>Чтение манги ", "- самые свежие");
 		return tmp;
 	}
 
 	@Override
-	String getDescription(String html) {
+	protected String getDescription(String html) {
 		return null;
 	}
 
 	@Override
-	String getImgUrl(String html) {
+	protected String getImgUrl(String html) {
 		String tmp = getByEnd(html, "src=\"", "mangaPicture");
 		tmp = tmp.substring(0, tmp.indexOf('\"'));
 		return tmp;
 	}
 
 	@Override
-	String getBonusUrl(String html) {
+	protected String getBonusUrl(String html) {
 		return null;
 	}
 
 	@Override
-	String getNextUrl(String html) {
+	protected String getNextUrl(String html) {
 		String nextchapter = getByBegin(html, "nextChapterLink = \"", "\";\n");
 
 		int curpage = url.contains("#page=") ? Integer.parseInt(url.substring(url.indexOf("#page=") + "#page=".length())) : 0;
