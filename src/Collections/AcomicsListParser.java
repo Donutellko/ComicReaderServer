@@ -4,11 +4,19 @@ import xyz.donutellko.comicreaderserver.Comic;
 
 import java.util.ArrayList;
 
-public class AcomicsListParser extends UniversalCollectionParser {
+public class AcomicsListParser extends UniversalListParser {
 
-	final static String base_url = "https://acomics.ru"; // для относительных ссылок, начинающихся со слеша
-	public static String initial_url = "https://acomics.ru/comics?categories=&ratings[]=1&ratings[]=2&ratings[]" +
-			"=3&ratings[]=4&ratings[]=5&ratings[]=6&type=0&updatable=0&issue_count=10&sort=serial_name";
+	/**
+	 * Определяет минимальное количество страниц в комиксе для добавления его в список
+	 * (В случае с acomics происходит на стороне сервера (см. INITIAL_URL)
+	 */
+	final static int PAGES_COUNT_FILTER = 10;
+
+	final static String BASE_URL = "https://acomics.ru"; // для относительных ссылок, начинающихся со слеша
+
+	public final static String INITIAL_URL = "https://acomics.ru/comics" +
+			"?categories=&ratings[]=1&ratings" + "[]=2&ratings[]=3&ratings[]=4&ratings[]=5&ratings[]=6" +
+			"&type=0&updatable=0&issue_count=" + PAGES_COUNT_FILTER + "&sort=serial_name";
 
 	public AcomicsListParser(String url, String html) {
 		super(url, html);
@@ -40,10 +48,11 @@ public class AcomicsListParser extends UniversalCollectionParser {
 		String init_url = getByBegin(tmp, "href=\"", "\"") + "/1";
 
 		//
-		String logo_url = base_url + getByBegin(tmp, "src=\"", "\'");
+		String logo_url = BASE_URL + getByBegin(tmp, "src=\"", "\'");
 
 		// class="about">***</div
 		String description = getByBegin(tmp, "class=\"about\">", "</div").trim();
+		if (description.contains("Описание отсутствует")) description = null;
 
 		// class="rating
 		String rating;
@@ -68,6 +77,6 @@ public class AcomicsListParser extends UniversalCollectionParser {
 				break;
 			}
 		}
-		return base_url + b;
+		return BASE_URL + b;
 	}
 }

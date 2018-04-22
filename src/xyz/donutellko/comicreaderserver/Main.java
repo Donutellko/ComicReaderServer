@@ -1,7 +1,7 @@
 package xyz.donutellko.comicreaderserver;
 
 import Collections.AcomicsListParser;
-import Collections.UniversalCollectionParser;
+import Collections.UniversalListParser;
 import Parsers.*;
 
 import java.lang.reflect.Constructor;
@@ -14,49 +14,63 @@ public class Main {
 	static boolean debug = false; // В этом режиме парсится не более testN страниц.
 	static int testN = 5; // Столько страниц парсится для каждого
 	static boolean dont_add_comics = false; // Отключает обновление каталога комиксов
+	private static Object newPages;
 
 	public static void main(String[] args) {
 		parseArgs(args);
 
 		// testListParser(); if (true) return; // Тестирование работы парсеров коллекций
 
-
 		initDb();
 
-		ResultSet rset = ComicDB.getComics();
-		assert rset != null;
+		updateComicsList();
 
-		for (ComicDB.DbComic c : getComicsFromDb(rset)) {
-			if (c.initUrl == null || c.initUrl.length() == 0) {
-				System.out.println("\nNo initial URL found for " + c.title);
-				continue;
-			}
+		updateComicsPages();
 
-			parse(c);
-		}
+		closeDb();
+	}
 
+	private static void updateComicsList() {
+		updateComicList(AcomicsListParser.class, AcomicsListParser.INITIAL_URL);
+
+	}
+
+	private static <T extends UniversalListParser> void updateComicList(
+			Class <T> tClass, String initialUrl) {
+		Constructor c;
 		try {
-			DbConnection.close();
-		} catch (Exception e) { // SQLException, ClassNotFoundException
+			c = tClass.getDeclaredConstructor(String.class, String.class);
+			c.setAccessible(true);
+
+			String url = initialUrl;
+			do {
+				String html = HttpWorker.getHtml(url);
+				if (html == null)
+					break;
+				UniversalListParser p = (UniversalListParser) c.newInstance(url, html);
+				List <Comic> list = p.getList();
+
+				ComicDB.addComicList(list);
+
+				url = p.getNextUrl();
+			} while (url != null);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void testListParser() {
-		String url = AcomicsListParser.initial_url;
-		do {
-			String html = HttpWorker.getHtml(url);
-			if (html == null)
-				break;
-			UniversalCollectionParser p = new AcomicsListParser(url, html);
-			List <Comic> list = p.getList();
-			url = p.getNextUrl();
-			System.out.println(url);
-			for (Comic c : list) {
-				System.out.println(c.title + "\n\t" + c.description +
-						"\n\t" + c.init_url + "\n\t" + c.logo_url + "\n\n");
+
+	public static void updateComicsPages() {
+		ResultSet rset = ComicDB.getComics();
+		assert rset != null;
+
+		for (ComicDB.DbComic c : getComicsFromDb(rset)) {
+			if (c.init_url == null || c.init_url.length() == 0) {
+				System.out.println("\nNo initial URL found for " + c.title);
+				continue;
 			}
-		} while (url != null);
+			parse(c);
+		}
 	}
 
 	private static void initDb() {
@@ -77,7 +91,7 @@ public class Main {
 			System.out.println("Unable to find parser: " + c.source);
 		} else {
 			try {
-				savePages(parser, c.comicId, c.initUrl);
+				savePages(parser, c.comic_id, c.init_url);
 			} catch (Exception e) {
 				System.out.println("Exception while getting " + c.title);
 				e.printStackTrace();
@@ -187,5 +201,13 @@ public class Main {
 		}
 
 		return null;
+	}
+
+	private static void closeDb() {
+		try {
+			DbConnection.close();
+		} catch (Exception e) { // SQLException, ClassNotFoundException
+			e.printStackTrace();
+		}
 	}
 }

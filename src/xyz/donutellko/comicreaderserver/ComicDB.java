@@ -4,6 +4,7 @@ import Parsers.UniversalParser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static xyz.donutellko.comicreaderserver.DbConnection.statmt;
 
@@ -59,8 +60,13 @@ public class ComicDB {
 	 * @param c
 	 * @throws SQLException в случае неудачи при добавлении в список
 	 */
-	public static void addComic(Comic c) throws SQLException {
-		addComic(c.title, c.lang, c.author, c.source, c.description, c.main_url, c.init_url, c.timestamp);
+	public static void addComic(Comic c) {
+		try {
+			addComic(c.title, c.lang, c.author, c.source, c.description,
+					c.main_url, c.init_url, c.timestamp);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -71,13 +77,19 @@ public class ComicDB {
 	static void addComic(String title, String lang, String author, String source, String description,
 						 String main_url, String init_url, long timestamp) throws SQLException {
 
-		statmt.execute("insert into COMIC (NAME, LANG, AUTHOR, SOURCE, DESCRIPTION, " +
-				"MAIN_URL, INIT_URL) values (" +
-				escape(title) + "', '" + lang + "', '" + escape(author) + "', '" + source
-				+ "', '" + escape(description) + "', '" + main_url + "', '" + init_url + ");");
-
-		int comicId = getComicId(title, lang, source);
-		createPagesTable(comicId);
+		String sql = "insert into COMIC (TITLE, DESCRIPTION, AUTHOR, LANG, SOURCE, " +
+				"MAIN_URL, INIT_URL, LAST_UPDATE)";
+		sql +=  " values ("
+				+ "'" + escape(title) + "', '"
+				+ escape(description) + "', '"
+				+ escape(author) + "', '"
+				+ lang + "', '"
+				+ source + "', '"
+				+ main_url + "', '"
+				+ init_url + "', "
+				+ timestamp
+				+ ");";
+		statmt.execute(sql);
 	}
 
 	/**
@@ -125,7 +137,7 @@ public class ComicDB {
 	 * Заменяет ' на ''
 	 */
 	private static String escape(String s) {
-		if (s == null) return null;
+		if (s == null) return "";
 		s = s.replaceAll("\'", "\'\'");
 		return s;
 	}
@@ -150,22 +162,27 @@ public class ComicDB {
 		}
 	}
 
+	public static void addComicList(List <Comic> list) {
+		for (Comic c : list)
+			addComic(c);
+	}
+
 	/**
 	 * Класс с информацией о комиксе, соответствующей той, которая хранится в таблице COMIC
 	 */
 	static class DbComic {
-		int comicId;
-		String title, description, author, mainUrl, initUrl, origUrl, lang, source;
-		long lastUpdate;
+		int comic_id;
+		String title, description, author, main_url, init_url, orig_url, lang, source;
+		long timestamp;
 
 		DbComic(ResultSet resSet) throws SQLException {
-			comicId = resSet.getInt("COMIC_ID");
+			comic_id = resSet.getInt("COMIC_ID");
 			title = resSet.getString("TITLE");
 			description = resSet.getString("DESCRIPTION");
 			author = resSet.getString("AUTHOR");
-			mainUrl = resSet.getString("MAIN_URL");
-			initUrl = resSet.getString("INIT_URL");
-			origUrl = resSet.getString("ORIG_URL");
+			main_url = resSet.getString("MAIN_URL");
+			init_url = resSet.getString("INIT_URL");
+			orig_url = resSet.getString("ORIG_URL");
 			lang = resSet.getString("LANG");
 			source = resSet.getString("SOURCE");
 		}

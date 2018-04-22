@@ -4,13 +4,13 @@ import xyz.donutellko.comicreaderserver.*;
 
 import java.util.ArrayList;
 
-public abstract class UniversalCollectionParser extends AbstractParser {
+public abstract class UniversalListParser extends AbstractParser {
 
 	String url;
 	private ArrayList<Comic> parsed;
 	private String nextUrl;
 
-	UniversalCollectionParser(String url, String html) {
+	UniversalListParser(String url, String html) {
 		this.url = url;
 		parsed = getComicList(html);
 		nextUrl = getNextUrl(html);
