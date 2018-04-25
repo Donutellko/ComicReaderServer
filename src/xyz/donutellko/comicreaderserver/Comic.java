@@ -8,52 +8,63 @@ import Parsers.UniversalParser;
  * Классы, используемые для создания JSON-файлов комиксов и страниц.
  */
 public class Comic {
-    public String name, shortName, author, description, lang, mainUrl, initUrl;
-    long timestamp;
+	// package-private, not available for parsers
+	int comic_id, pagescount;
+	String title, description, author, main_url, orig_url, init_url, logo_url, lang, source;
+	long timestamp;
 
 	/**
 	 *
-	 * @param name Название комикса
-	 * @param shortName Краткое имя (не более 10 символов без пробелов и левых символов), используется для создания файлов
 	 * @param description Описание комикса
 	 * @param lang Язык комикса (два символа заглавными буквами)
 	 * @param mainUrl Ссылка на главную страницу официального сайта комикса
 	 */
-    public Comic(String name, String shortName, String description, String lang, String mainUrl) {
-        this.name = name;
-        this.shortName = shortName;
-        this.lang = lang;
-        this.description = description;
-        this.mainUrl = mainUrl;
-        timestamp = 0L;
-    }
+	public Comic(String title, String description, String author, String mainUrl,
+				 String orig_url, String init_url, String logo_url, String lang, String source) {
+		this.title = title;
+		this.description = description;
+		this.author = author;
+		this.main_url = mainUrl;
+		this.orig_url = orig_url;
+		this.init_url = init_url;
+		this.logo_url = logo_url;
+		this.lang = lang;
+		this.source = source;
+		this.timestamp = System.currentTimeMillis();
+	}
 
-    public Comic(String name, String shortName, String lang, String mainUrl) {
-        this.name = name;
-        this.shortName = shortName;
-        this.lang = lang;
-        this.mainUrl = mainUrl;
-        timestamp = 0L;
-    }
+	/**
+	 * Класс страницы комикса.
+	 * Подразумевается, что он создаётся исключительно во время парсинга из UniversalParser
+	 * @see UniversalParser.ParsedPage
+	 */
+	public static class Page {
+		public String title, description, this_url, img_url, bonus_url;
+		public int number;
+		public long timestamp;
 
-    /**
-     * Класс страницы комикса.
-     * Подразумевается, что он создаётся исключительно во время парсинга из UniversalParser
-     * @see UniversalParser.ParsedPage
-     */
-    public static class Page {
-        public String title, description, thisUrl, imgUrl, bonusUrl;
-        public int number;
+		public Page(int number, UniversalParser.ParsedPage page) {
+			this.number = number;
+			this.title	   = page.title;
+			this.description = page.description;
+			this.this_url = page.thisUrl;
+			this.img_url = page.imgUrl;
+			this.bonus_url = page.bonusUrl;
+			this.timestamp = System.currentTimeMillis();
+		}
 
-        public Page(int number, UniversalParser.ParsedPage page) {
-        	this.number = number;
-            this.title       = page.title;
-            this.description = page.description;
-            this.thisUrl     = page.thisUrl;
-            this.imgUrl      = page.imgUrl;
-            this.bonusUrl    = page.bonusUrl;
-        }
-
-		public Page() {}
+		public Page() {
+			timestamp = System.currentTimeMillis();
+		}
 	}
 }
+
+/*
+NUMBER
+TITLE
+DESCRIPTION
+IMAGE_URL
+PAGE_URL
+BONUS_URL
+TIMESTAMP
+ */

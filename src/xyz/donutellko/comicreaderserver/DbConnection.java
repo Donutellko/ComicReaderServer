@@ -26,7 +26,8 @@ public class DbConnection {
 
 	/**
 	 * Создаёт в случае отсутствия таблицы COMIC, CATEGORY, COMIC_CATEGORY.
-	 * Индивидуальные таблицы комиксов COMIC_* создаются в классе ComicDB, так как зависит от контента таблицы COMIC.
+	 * Индивидуальные таблицы комиксов COMIC_* создаются в классе ComicDB,
+	 * так как зависит от контента таблицы COMIC.
 	 * @throws SQLException
 	 */
 	public static void initialise () throws SQLException {

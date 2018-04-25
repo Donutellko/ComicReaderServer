@@ -6,7 +6,12 @@ public class ComicslateParser extends UniversalParser {
 	}
 
 	@Override
-	String getTitle(String html) {
+	protected String getAlias() {
+		return "comicslate";
+	}
+
+	@Override
+	protected String getTitle(String html) {
 		String tmp = getByBegin(html, "class=\"page\"", "cnav cnavn");
 		if (tmp == null) return "";
 		int a = tmp.indexOf("<p>") + "<p>".length();
@@ -15,23 +20,23 @@ public class ComicslateParser extends UniversalParser {
 	}
 
 	@Override
-	String getDescription(String html) {
+	protected String getDescription(String html) {
 		return "";
 	}
 	@Override
-	String getImgUrl(String html) {
+	protected String getImgUrl(String html) {
 		String tmp = html.substring(html.indexOf("</table>"));
-		tmp = getByBegin(tmp, "<img src=\"/_media", "\" class=\"media\""); //<img src="/_media/sci-fi/freefall/0998.jpg" class="media"
+		tmp = getByBegin(tmp, "<img src=\"/_media", "\" class=\"media\"");
 		return "https://comicslate.org/_media" + tmp;
 	}
 
 	@Override
-	String getBonusUrl(String html) {
+	protected String getBonusUrl(String html) {
 		return null;
 	}
 
 	@Override
-	String getNextUrl(String html) {
+	protected String getNextUrl(String html) {
 		String url = getByEnd(html, "<a href=\"", "?purge=true\" accesskey=\"n\" id=\"navnext\"");
 		return url == null ? null : "https://comicslate.org" + url;
 	}

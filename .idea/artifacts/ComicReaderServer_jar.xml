@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ComicReaderServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ComicReaderServer_jar</output-path>
+    <root id="archive" name="ComicReaderServer.jar">
+      <element id="module-output" name="ComicReaderServer" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.1/gson-2.8.1.jar" path-in-jar="/" />
+      <element id="library" level="project" name="com.google.code.gson:gson:2.8.1" />
+      <element id="library" level="project" name="org.xerial:sqlite-jdbc:3.21.0.1" />
+    </root>
+  </artifact>
+</component>
