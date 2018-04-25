@@ -60,7 +60,7 @@ public class Main {
 			case "enxkcd" 		: return EnXkcdParser.class;
 			case "ruxkcd" 		: return RuXkcdParser.class;
 			case "endilbert" 	: return EnDilbertParser.class;
-
+			case "mangachan"    : return MangachanParser.class;
 			case "comicslate" 	: return ComicslateParser.class;
 			case "acomics" 		: return AcomicsParser.class;
 			case "readmanga" 	: return ReadmangaParser.class;
