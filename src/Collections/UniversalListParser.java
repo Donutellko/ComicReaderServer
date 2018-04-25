@@ -6,24 +6,21 @@ import java.util.ArrayList;
 
 public abstract class UniversalListParser extends AbstractParser {
 
-	String url;
-	private ArrayList<Comic> parsed;
-	private String nextUrl;
+	protected String url, html;
 
 	UniversalListParser(String url, String html) {
 		this.url = url;
-		parsed = getComicList(html);
-		nextUrl = getNextUrl(html);
+		this.html = html;
 	}
 
-	abstract ArrayList<Comic> getComicList(String html);
-	abstract String getNextUrl(String html);
+	protected abstract ArrayList<Comic> getComicList(String html);
+	protected abstract String getNextUrl(String html);
 
 	public ArrayList<Comic> getList() {
-		return parsed;
+		return getComicList(html);
 	}
 
 	public String getNextUrl() {
-		return nextUrl;
+		return getNextUrl(html);
 	}
 }
