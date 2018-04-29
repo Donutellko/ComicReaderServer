@@ -34,7 +34,7 @@ public class AbstractParser {
 		r = s.replaceAll("\\u0026", "&");
 		r = r.replaceAll("&#39;", "'");
 		r = r.replaceAll("&quot;", "\"");
-
+		r = r.replaceAll("&nbsp;", " ");
 		r = r.replaceAll("<strong>", "");
 		r = r.replaceAll("</strong>", "");
 		r = r.replaceAll("<em>", "");

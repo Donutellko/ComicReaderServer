@@ -5,9 +5,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-class HttpWorker {
+public class HttpWorker {
 
-	static String getHtml(String url_s) {
+	public static String getHtml(String url_s) {
 		System.out.println("\tGetting " + url_s);
 
 		String result = null;

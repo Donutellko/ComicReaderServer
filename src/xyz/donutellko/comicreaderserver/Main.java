@@ -1,6 +1,7 @@
 package xyz.donutellko.comicreaderserver;
 
 import Collections.AcomicsListParser;
+import Collections.MangalibListParser;
 import Collections.UniversalListParser;
 import Parsers.*;
 
@@ -20,7 +21,6 @@ public class Main {
 		parseArgs(args);
 
 		// testListParser(); if (true) return; // Тестирование работы парсеров коллекций
-
 		initDb();
 
 		updateComicsList();
@@ -31,8 +31,8 @@ public class Main {
 	}
 
 	private static void updateComicsList() {
-		updateComicList(AcomicsListParser.class, AcomicsListParser.INITIAL_URL);
-
+		//updateComicList(AcomicsListParser.class, AcomicsListParser.INITIAL_URL);
+		updateComicList(MangalibListParser.class, MangalibListParser.INITIAL_URL);
 	}
 
 	private static <T extends UniversalListParser> void updateComicList(
@@ -142,7 +142,7 @@ public class Main {
 			case "enxkcd"     : return EnXkcdParser.class;
 			case "ruxkcd"     : return RuXkcdParser.class;
 			case "endilbert"  : return EnDilbertParser.class;
-
+			case "mangalib"   : return MangalibParser.class;
 			case "comicslate" : return ComicslateParser.class;
 			case "acomics"    : return AcomicsParser.class;
 			case "readmanga"  : return ReadmangaParser.class;
