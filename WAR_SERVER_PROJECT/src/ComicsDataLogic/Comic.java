@@ -8,18 +8,19 @@ import Parsers.UniversalParser;
  */
 public class Comic {
 	// + comicID, -initURL
-	public int comicID;
-    public String title, 	  // название комикса
-    			  shortName,  // краткое имя
-    			  lang, 	  // язык
-    			  author, 	  // автор
-    			  description,// описание
-    			  mainUrl, 	  // URL сайта всея комиксов
-    			  //initUrl,    // URL комикса
-    			  origUrl,	  // URL оригинала комикса
-    			  imgUrl; 	  // URL логотипа комикса
-    public long   lastUpdate; // время последнего обновления
-    public int 	  pagesCount;
+	int    comic_id;
+    String title, 	  // название комикса
+    	   //short_name,  // краткое имя
+    	   lang, 	  // язык
+    	   author, 	  // автор
+    	   description,// описание
+    	   main_url, 	  // URL сайта всея комиксов
+    	   init_url,    // URL комикса
+    	   orig_url,	  // URL оригинала комикса
+    	   img_url, 	  // URL логотипа комикса
+    	   source;  // Имя источника
+    long   last_update; // время последнего обновления
+    int    pagescount;
 
 	/**
 	 *
@@ -29,9 +30,7 @@ public class Comic {
 	 * @param lang 		  Язык комикса (два символа заглавными буквами)
 	 * @param mainUrl 	  Ссылка на главную страницу официального сайта комикса
 	 */
-    public Comic(int    comicID,
-    			 String title, 
-    			 String shortName,
+    public Comic(String title, 
     			 String lang,
     			 String author,
     			 String description,  
@@ -39,26 +38,29 @@ public class Comic {
     			 String initUrl,
     			 String origUrl,
     			 String imgUrl,
-    			 long lastUpdate,
-    			 int 	pagesCount) {
-    	this.comicID     = comicID;
+    			 String source,
+    			 int 	pagescount) {
+    	//this.comic_id    = comic_id;
         this.title 	  	 = title;
-        this.shortName	 = shortName;
+        //this.short_name	 = shortName;
         this.lang 		 = lang;
         this.author		 = author;
         this.description = description;
-        this.mainUrl 	 = mainUrl;
-        //this.initUrl	 = initUrl;
-        this.origUrl	 = origUrl;
-        this.imgUrl		 = imgUrl;
-        this.lastUpdate  = lastUpdate;
-        this.pagesCount  = pagesCount; 
+        this.main_url 	 = mainUrl;
+        this.init_url	 = initUrl;
+        this.orig_url	 = origUrl;
+        this.img_url     = imgUrl;
+        this.source		 = source;
+        this.last_update = System.currentTimeMillis(); // last_update ?????
+        this.pagescount  = pagescount; 
     }
 
+    /*
     public Comic(int comicID, String title, String lang, String author, String mainUrl, String initUrl, int pagesCount) {
     	this(comicID, title, null, lang, author, null, mainUrl, initUrl, null, null, 0L, pagesCount);
     }
-
+     */
+    
     /**
      * Класс страницы комикса.
      * Подразумевается, что он создаётся исключительно во время парсинга из UniversalParser
@@ -68,13 +70,13 @@ public class Comic {
     	public int    number; 		// номер страницы
         public String title, 		// заголовок страницы 
         			  description, 	// описание
-        			  thisUrl, 		// URL страницы
-        			  imgUrl, 		// URL картинки
-        			  bonusUrl; 	// URL на бонус
-        public long   lastUpdate; 	// время последнего апдейта
+        			  this_url, 		// URL страницы
+        			  img_url, 		// URL картинки
+        			  bonus_url; 	// URL на бонус
+        public long   last_update; 	// время последнего апдейта
         
         
-        public Page(int 	number, 
+       	public Page(int 	number, 
 	        		String 	title, 
 	        		String 	description, 
 	        		String 	thisUrl, 
@@ -84,15 +86,18 @@ public class Comic {
         	this.number 	 = number;
             this.title       = title;
             this.description = description;
-            this.thisUrl     = thisUrl;
-            this.imgUrl      = imgUrl;
-            this.bonusUrl    = bonusUrl;
-            this.lastUpdate  = timestamp;
+            this.this_url     = thisUrl;
+            this.img_url      = imgUrl;
+            this.bonus_url    = bonusUrl;
+            this.last_update  = timestamp;
         }
         
-        public Page(int number, UniversalParser.ParsedPage page, long timestamp) {
-        	this(number, page.title, page.description, page.thisUrl, page.imgUrl, page.bonusUrl, timestamp);
+        public Page(int number, UniversalParser.ParsedPage page) {
+        	this(number, page.title, page.description, page.thisUrl, page.imgUrl, page.bonusUrl, System.currentTimeMillis());
         }
 
+        public Page() {
+        	this(0,null,null,null,null,null,System.currentTimeMillis());
+        }
 	}
 }

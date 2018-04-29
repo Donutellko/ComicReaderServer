@@ -1,1 +1,8 @@
+/AppUtilities/
+/COMICS.db
+/ComicsDataLogic/
+/DataAccessorServlets/
 /DbControllers/
+/ListParsers/
+/Parsers/
+/sqlite3.exe

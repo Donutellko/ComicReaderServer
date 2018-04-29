@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import DbControllers.DbConnectionManager;
 import DbControllers.DbContentCreator;
@@ -40,7 +41,10 @@ public class ComicDB {
 
 			return p;
 		} catch (SQLException e) {
-			System.out.println("Failed to get last page for COMIC_ID=" + comicId + ". Hope it's because the table hasn't been created yet");
+			if (e.getMessage().contains("No"))
+				System.out.println("No such table COMIC_" + comicId);
+			else
+				System.out.println("Failed to get last page for COMIC_ID=" + comicId + "\n" + e.getMessage());
 		}
 		return null;
 	}
@@ -131,9 +135,14 @@ public class ComicDB {
 	 * @param c
 	 * @throws SQLException в случае неудачи при добавлении в список
 	 */
-	public static void addComic(Comic c) throws SQLException {
-		//addComic(c.title, c.lang, c.author, c.description, c.mainUrl, c.initUrl, null);
-		addComic(c.title, c.lang, c.author, c.description, c.mainUrl, null, null, c.pagesCount);
+	public static void addComic(Comic c){
+		try {
+			addComic(c.title,c.lang,c.author,c.description,c.main_url,c.init_url,c.source, c.last_update, c.pagescount);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -141,13 +150,33 @@ public class ComicDB {
 	 *
 	 * @throws SQLException в случае неудачи при добавлении в список
 	 */
-	static void addComic(String title, String lang, String author, String description, String mainUrl, String initUrl, String source, int pagesCount) throws SQLException {
-		statmt.execute("insert into COMIC (NAME, LANG, AUTHOR, SOURCE, DESCRIPTION, MAIN_URL, INIT_URL, PAGES_COUNT) values (" +
-				escape(title) + "', '" + lang + "', '" + escape(author) + "', '" + source + "', '" + escape(description) + "', '" + mainUrl + "', '" + initUrl + "', " + pagesCount + ");");
-		int comicId = getComicId(title, lang, source);
-		createPagesTable(comicId);
+	static void addComic(String title, String lang, String author, String description, String main_url, String init_url, String source, long last_update, int pagescount) throws SQLException {
+		// TODO: PAGES COUNT ?
+		//statmt.execute("insert into COMIC (TITLE, DESCRIPTION, AUTHOR, LANG, SOURCE, MAIN_URL, INIT_URL, LAST_UPDATE, PAGES_COUNT) values (" +
+				//escape(title) + "', '" + lang + "', '" + escape(author) + "', '" + source + "', '" + escape(description) + "', '" + main_url + "', '" + init_url  + "', '" + last_update + "', '" + pagescount + ");");
+		//int comicId = getComicId(title, lang, source);
+		//createPagesTable(comicId);
+		
+		String sql = "insert into COMIC (TITLE, DESCRIPTION, AUTHOR, LANG, SOURCE, MAIN_URL, INIT_URL, LAST_UPDATE, PAGES_COUNT)";
+		sql += " values ("
+				+ "'" + escape(title) + "', '"
+				+ escape(description) + "', '"
+				+ escape(author) + "', '"
+				+ lang + "', '"
+				+ source + "', '"
+				+ main_url + "', '"
+				+ init_url + "', "
+				+ last_update
+				+ pagescount
+				+ ");";
+		statmt.execute(sql);
 	}
 
+	public static void addComicList(List<Comic> list) {
+			for (Comic c : list)
+				addComic(c);
+	}
+	
 	/**
 	 * Ищет в БД комикс с переданными параметрами
 	 *
@@ -170,7 +199,7 @@ public class ComicDB {
 	 * @throws SQLException в случае невозможности добавления
 	 */
 	public static void addPage(int comicId, int pageNum, DbPage p, long lastUpdate) throws SQLException {
-		addPage(comicId, pageNum, p.title, p.description, p.imgUrl, p.thisUrl, p.bonusUrl, lastUpdate);
+		addPage(comicId, pageNum, p.title, p.description, p.img_url, p.this_url, p.bonus_url, lastUpdate);
 	}
 
 	/**
@@ -185,7 +214,7 @@ public class ComicDB {
 	}
 	
 	public static void updatePage(int comicId, int pageNum, DbPage p, long lastUpdate) throws SQLException  {
-		updatePage(comicId, pageNum, p.title, p.description, p.imgUrl, p.thisUrl, p.bonusUrl, lastUpdate);
+		updatePage(comicId, pageNum, p.title, p.description, p.img_url, p.this_url, p.bonus_url, lastUpdate);
 	}
 	
 	private static void updatePage(int comicId, int pageNum, String title, String desription, String imageUrl, String pageUrl, String bonusUrl, long lastUpdate) throws SQLException {
@@ -212,7 +241,7 @@ public class ComicDB {
 	 * Заменяет ' на ''
 	 */
 	private static String escape(String s) {
-		if (s == null) return null;
+		if (s == null) return "";
 		s = s.replaceAll("\'", "\'\'");
 		return s;
 	}
@@ -244,36 +273,37 @@ public class ComicDB {
 	 * Класс с информацией о комиксе, соответствующей той, которая хранится в таблице COMIC
 	 */
 	public static class DbComic {
-		public int 		comicId;
+		public int 		comic_id;
 		public String 	title, 
 						lang, 
 						author, 
 						description, 
-						mainUrl, 
-						initUrl, 
-						origUrl, 
-						imgUrl, 
+						main_url, 
+						init_url, 
+						orig_url, 
+						img_url, 
 						source;
-		public long 	lastUpdate;
-		public int 	    pagesCount;
+		public long 	last_update;
+		public int 	    pagescount;
 
 		public DbComic(ResultSet resSet) throws SQLException {
-			comicId 	= resSet.getInt("COMIC_ID");
+			comic_id 	= resSet.getInt("COMIC_ID");
 			title	    = resSet.getString("TITLE");
 			lang 		= resSet.getString("LANG");
 			author 		= resSet.getString("AUTHOR");
 			description = resSet.getString("DESCRIPTION");
-			mainUrl 	= resSet.getString("MAIN_URL");
-			initUrl 	= resSet.getString("INIT_URL");
-			origUrl 	= resSet.getString("ORIG_URL");
-			imgUrl		= resSet.getString("IMAGE_URL");
+			main_url 	= resSet.getString("MAIN_URL");
+			init_url 	= resSet.getString("INIT_URL");
+			orig_url 	= resSet.getString("ORIG_URL");
+			img_url		= resSet.getString("IMAGE_URL");
 			source 		= resSet.getString("SOURCE");
-			lastUpdate  = resSet.getLong("LAST_UPDATE");
-			pagesCount  = resSet.getInt("PAGES_COUNT");
+			last_update = resSet.getLong("LAST_UPDATE");
+			pagescount  = resSet.getInt("PAGES_COUNT");
 		}
 		
 		public Comic toComic() {
-			return new Comic(comicId, title, null, lang, author, description, mainUrl, initUrl, origUrl, imgUrl, lastUpdate, pagesCount);
+			// COMIC ID , LAST UPDATE ?????
+			return new Comic(title, lang, author, description, main_url, init_url, orig_url, img_url, source, pagescount);
 		}
 	}
 
@@ -284,34 +314,34 @@ public class ComicDB {
 		public int 		number;
 		public String 	title, 
 						description,
-						thisUrl, 
-						imgUrl, 
-						bonusUrl;
-		public long 	lastUpdate;
+						this_url, 
+						img_url, 
+						bonus_url;
+		public long 	last_update;
 
 		public DbPage(ResultSet resSet) throws SQLException {
 			this.number 	 = resSet.getInt("PAGE_NUMBER");
 			this.title		 = resSet.getString("TITLE");
 			this.description = resSet.getString("DESCRIPTION");
-			this.thisUrl 	 = resSet.getString("PAGE_URL");
-			this.imgUrl 	 = resSet.getString("IMAGE_URL");
-			this.bonusUrl 	 = resSet.getString("BONUS_URL");
-			this.lastUpdate  = resSet.getLong("LAST_UPDATE");
+			this.this_url 	 = resSet.getString("PAGE_URL");
+			this.img_url 	 = resSet.getString("IMAGE_URL");
+			this.bonus_url 	 = resSet.getString("BONUS_URL");
+			this.last_update  = resSet.getLong("LAST_UPDATE");
 		}
 
 		
 		public DbPage(UniversalParser.ParsedPage p) {
 			title 		= p.title;
 			description = p.description;
-			thisUrl 	= p.thisUrl;
-			imgUrl 		= p.imgUrl;
-			bonusUrl 	= p.bonusUrl;
+			this_url 	= p.thisUrl;
+			img_url 		= p.imgUrl;
+			bonus_url 	= p.bonusUrl;
 		}
-		
 		
 		public Comic.Page toPage(){
-			return new Comic.Page(number, title, description, thisUrl, imgUrl, bonusUrl, lastUpdate);
+			return new Comic.Page(number, title, description, this_url, img_url, bonus_url, last_update);
 		}
+		
 	}
 
 	

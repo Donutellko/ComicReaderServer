@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 import AppUtilities.HttpWorker;
-import ComicsDataLogic.ComicDB;
-import ComicsDataLogic.ComicDB.DbPage;
+import ComicsDataLogic.*;
 import Parsers.*;
 
 public class DbPeriodicUpdater extends TimerTask {
@@ -68,7 +67,7 @@ public class DbPeriodicUpdater extends TimerTask {
 	}
 
 	private static void parseComic(boolean shallUpdate, ComicDB.DbComic c) { 
-		if (c.initUrl == null || c.initUrl.length() == 0) {
+		if (c.init_url == null || c.init_url.length() == 0) {
 			System.out.println("\nNo initial URL found for " + c.title);
 			return;
 		}
@@ -78,9 +77,9 @@ public class DbPeriodicUpdater extends TimerTask {
 		if (parser != null) {
 			try {
 				if (shallUpdate) {
-					updatePages(parser, c.comicId, c.initUrl);
+					updatePages(parser, c.comic_id, c.init_url);
 				} else {
-					createAndAddPages(parser, c.comicId, c.initUrl);
+					createAndAddPages(parser, c.comic_id, c.init_url);
 				}
 				
 			} catch (Exception e) {
@@ -104,9 +103,12 @@ public class DbPeriodicUpdater extends TimerTask {
 			case "enxkcd" 		: return EnXkcdParser.class;
 			case "ruxkcd" 		: return RuXkcdParser.class;
 			case "endilbert" 	: return EnDilbertParser.class;
+			
 			case "comicslate" 	: return ComicslateParser.class;
 			case "acomics" 		: return AcomicsParser.class;
 			case "readmanga" 	: return ReadmangaParser.class;
+			case "tf2old" 	    : return TeamfortressOldParser.class;
+			//case "mangachan"    : return MangachanParser.class;
 			default: return null;
 		}
 	}
@@ -179,11 +181,64 @@ public class DbPeriodicUpdater extends TimerTask {
 			UniversalParser.ParsedPage parsedPage = ((UniversalParser) c.newInstance(url, html)).getParsedPage();
 
 			return parsedPage;
-		} catch (Exception e) { e.printStackTrace(); }
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
 
 		return null;
 	}
     
+    public static void updateComicsPages() {
+    			ResultSet rset = ComicDB.getComics();
+    			assert rset != null;
+    	
+    			for (ComicDB.DbComic c : getComicsFromDb(rset)) {
+    				if (c.init_url == null || c.init_url.length() == 0) {
+    					System.out.println("\nNo initial URL found for " + c.title);
+    					continue;
+    	 			}
+    				parseComic(true,c);
+    			} 
+    }
+
+    private static List <ComicDB.DbComic> getComicsFromDb(ResultSet rset) {
+    			System.out.println("Getting comics from Db");
+    			List <ComicDB.DbComic> result = new ArrayList <>();
+    			try {
+    				while (rset.next())
+    					result.add(new ComicDB.DbComic(rset));
+    	 		} catch (Exception e) {
+    	 			e.printStackTrace();
+    	 		}
+    	
+    			System.out.println("Got " + result.size() + " comics to update.");
+    	
+    			return result;
+    }
+
+    /*
+    private static void parseArgs(String[] args) {
+    			for (String c : args)
+    				switch (c) {
+    					case "-debug":
+    						debug = true; // Включение дебага
+    						System.out.println("Debug mode on. Only " + testN
+    								+ " pages per comic will be parsed. ");
+    						break;
+    					case "-dac":
+    						dont_add_comics = true; // Отключение добавления новых комиксов из каталогов
+    						System.out.println("Adding new comics from catalogs disabled.");
+    						break;
+    					case "-h":
+    						System.out.println("Available options: \n" +
+    								"\t-debug   Add only 5 pages per comic\n" +
+    								"\t-dac     Disable adding new comics from catalogs");
+    					default:
+    						System.out.println("Unknown option " + c + "\nUse -h to print help.");
+    				}
+    		}
+    
+    */
     /*
     private interface Command{
     	void execute();

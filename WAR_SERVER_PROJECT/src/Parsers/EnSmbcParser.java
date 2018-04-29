@@ -25,6 +25,11 @@ bonus: <div id="aftercomic" onclick="toggleBlock(&quot;aftercomic&quot;)" style=
 	}
 
 	@Override
+	protected String getAlias() {
+		return "ensmbc";
+	}
+
+	@Override
 	public String getTitle(String html) {
 		return getByBegin(html, "<title>Saturday Morning Breakfast Cereal - ", "</title>");
 	}
