@@ -2,7 +2,7 @@ package Parsers;
 
 public class MangalibParser extends UniversalParser {
 
-    private String pagesList = getByBegin(html, "pages: [", "]") + "{",
+    private String pagesList = getByBegin(html, "pages: [{", "]") + "{",
             img = getByBegin(html, "\"og:image\" content=\"","\"/>"),
             nextChapter = getByBegin(html, "next: '", "'") + "/1";
 
@@ -11,9 +11,7 @@ public class MangalibParser extends UniversalParser {
     }
 
     @Override
-    protected String getAlias(){ 
-    	return "mangalib"; 
-    }
+    protected String getAlias(){ return "mangalib"; }
 
     @Override
     protected String getTitle(String html) {

@@ -104,6 +104,7 @@ public class DbPeriodicUpdater extends TimerTask {
 			case "ruxkcd" 		: return RuXkcdParser.class;
 			case "endilbert" 	: return EnDilbertParser.class;
 			
+			case "mangalib"     : return MangalibParser.class;
 			case "comicslate" 	: return ComicslateParser.class;
 			case "acomics" 		: return AcomicsParser.class;
 			case "readmanga" 	: return ReadmangaParser.class;
