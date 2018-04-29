@@ -25,7 +25,7 @@ public class MangalibParser extends UniversalParser {
     protected String getBonusUrl(String html) { return null; }
 
     @Override
-    protected String getDescription(String html) { return pagesList; }
+    protected String getDescription(String html) { return ""; }
 
     @Override
     protected String getImgUrl(String html) {
