@@ -1,0 +1,365 @@
+20-Mar-2018 00:06:43.259 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/9.0.6
+20-Mar-2018 00:06:43.267 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 5 2018 09:34:35 UTC
+20-Mar-2018 00:06:43.267 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         9.0.6.0
+20-Mar-2018 00:06:43.267 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+20-Mar-2018 00:06:43.268 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+20-Mar-2018 00:06:43.268 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+20-Mar-2018 00:06:43.268 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jre-9.0.1
+20-Mar-2018 00:06:43.268 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           9.0.1+11
+20-Mar-2018 00:06:43.269 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+20-Mar-2018 00:06:43.269 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:06:43.269 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:06:43.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+20-Mar-2018 00:06:43.294 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+20-Mar-2018 00:06:43.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=E:\MyWork\Java\apache-tomcat-9.0.6\conf\logging.properties
+20-Mar-2018 00:06:43.295 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+20-Mar-2018 00:06:43.296 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+20-Mar-2018 00:06:43.297 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+20-Mar-2018 00:06:43.298 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+20-Mar-2018 00:06:43.299 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:06:43.300 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:06:43.301 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=E:\MyWork\Java\apache-tomcat-9.0.6\temp
+20-Mar-2018 00:06:43.301 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+20-Mar-2018 00:06:43.302 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+20-Mar-2018 00:06:43.302 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+20-Mar-2018 00:06:44.531 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+20-Mar-2018 00:06:44.652 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:06:45.020 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+20-Mar-2018 00:06:45.063 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+20-Mar-2018 00:06:45.067 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+20-Mar-2018 00:06:45.068 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 3410 ms
+20-Mar-2018 00:06:45.217 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+20-Mar-2018 00:06:45.220 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/9.0.6
+20-Mar-2018 00:06:45.265 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\docs]
+20-Mar-2018 00:06:46.485 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\docs] has finished in [1,198] ms
+20-Mar-2018 00:06:46.486 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\examples]
+20-Mar-2018 00:06:47.331 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\examples] has finished in [844] ms
+20-Mar-2018 00:06:47.334 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\host-manager]
+20-Mar-2018 00:06:47.429 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\host-manager] has finished in [96] ms
+20-Mar-2018 00:06:47.430 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\manager]
+20-Mar-2018 00:06:47.488 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\manager] has finished in [57] ms
+20-Mar-2018 00:06:47.493 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\ROOT]
+20-Mar-2018 00:06:47.570 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\ROOT] has finished in [78] ms
+20-Mar-2018 00:06:47.584 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:06:47.603 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+20-Mar-2018 00:06:47.613 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 2543 ms
+20-Mar-2018 00:09:17.655 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\Servlets2]
+20-Mar-2018 00:09:17.736 SEVERE [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.tomcat.util.digester.Digester.fatalError Parse Fatal Error at line 1 column 1: Premature end of file.
+ org.xml.sax.SAXParseException; systemId: file:/E:/MyWork/Java/apache-tomcat-9.0.6/webapps/Servlets2/WEB-INF/web.xml; lineNumber: 1; columnNumber: 1; Premature end of file.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1439)
+	at org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml(WebXmlParser.java:119)
+	at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1107)
+	at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:765)
+	at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:299)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4939)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:742)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:718)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:703)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1142)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1876)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1054)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:428)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1630)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:304)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1174)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1400)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1368)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+20-Mar-2018 00:09:17.744 SEVERE [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml Parse error in application web.xml file at [file:/E:/MyWork/Java/apache-tomcat-9.0.6/webapps/Servlets2/WEB-INF/web.xml]
+ org.xml.sax.SAXParseException; systemId: file:/E:/MyWork/Java/apache-tomcat-9.0.6/webapps/Servlets2/WEB-INF/web.xml; lineNumber: 1; columnNumber: 1; Premature end of file.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1439)
+	at org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml(WebXmlParser.java:119)
+	at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1107)
+	at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:765)
+	at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:299)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4939)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:742)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:718)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:703)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1142)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1876)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1054)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:428)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1630)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:304)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1174)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1400)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1368)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+20-Mar-2018 00:09:17.751 SEVERE [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml Occurred at line [1] column [1]
+20-Mar-2018 00:09:17.758 SEVERE [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.ContextConfig.configureStart Marking this application unavailable due to previous error(s)
+20-Mar-2018 00:09:17.769 SEVERE [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.StandardContext.startInternal One or more components marked the context as not correctly configured
+20-Mar-2018 00:09:17.773 SEVERE [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.StandardContext.startInternal Context [/Servlets2] startup failed due to previous errors
+20-Mar-2018 00:09:17.842 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\Servlets2] has finished in [186] ms
+20-Mar-2018 00:13:08.784 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+20-Mar-2018 00:13:12.990 INFO [Thread-4] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:13:15.980 SEVERE [main] org.apache.catalina.startup.Catalina.stopServer Could not contact [localhost:[8005]]. Tomcat may not be running.
+20-Mar-2018 00:13:20.334 SEVERE [main] org.apache.catalina.startup.Catalina.stopServer Could not contact [localhost:[8005]]. Tomcat may not be running.
+20-Mar-2018 00:13:26.264 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/9.0.6
+20-Mar-2018 00:13:26.271 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 5 2018 09:34:35 UTC
+20-Mar-2018 00:13:26.272 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         9.0.6.0
+20-Mar-2018 00:13:26.272 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+20-Mar-2018 00:13:26.272 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+20-Mar-2018 00:13:26.273 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+20-Mar-2018 00:13:26.273 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jre-9.0.1
+20-Mar-2018 00:13:26.273 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           9.0.1+11
+20-Mar-2018 00:13:26.275 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+20-Mar-2018 00:13:26.275 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:13:26.275 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:13:26.276 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+20-Mar-2018 00:13:26.276 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+20-Mar-2018 00:13:26.277 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=E:\MyWork\Java\apache-tomcat-9.0.6\conf\logging.properties
+20-Mar-2018 00:13:26.277 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+20-Mar-2018 00:13:26.278 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+20-Mar-2018 00:13:26.278 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+20-Mar-2018 00:13:26.279 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+20-Mar-2018 00:13:26.280 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:13:26.281 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:13:26.285 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=E:\MyWork\Java\apache-tomcat-9.0.6\temp
+20-Mar-2018 00:13:26.285 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+20-Mar-2018 00:13:26.286 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+20-Mar-2018 00:13:26.287 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+20-Mar-2018 00:13:27.220 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+20-Mar-2018 00:13:27.327 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:13:27.473 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+20-Mar-2018 00:13:27.484 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+20-Mar-2018 00:13:27.488 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+20-Mar-2018 00:13:27.489 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 1962 ms
+20-Mar-2018 00:13:27.584 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+20-Mar-2018 00:13:27.586 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/9.0.6
+20-Mar-2018 00:13:27.604 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\docs]
+20-Mar-2018 00:13:28.257 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\docs] has finished in [652] ms
+20-Mar-2018 00:13:28.258 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\examples]
+20-Mar-2018 00:13:28.810 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\examples] has finished in [552] ms
+20-Mar-2018 00:13:28.811 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\host-manager]
+20-Mar-2018 00:13:28.896 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\host-manager] has finished in [84] ms
+20-Mar-2018 00:13:28.898 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\manager]
+20-Mar-2018 00:13:28.949 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\manager] has finished in [51] ms
+20-Mar-2018 00:13:28.950 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\ROOT]
+20-Mar-2018 00:13:28.988 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\ROOT] has finished in [38] ms
+20-Mar-2018 00:13:28.990 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\Servlets2]
+20-Mar-2018 00:13:29.017 SEVERE [main] org.apache.tomcat.util.digester.Digester.fatalError Parse Fatal Error at line 1 column 1: Premature end of file.
+ org.xml.sax.SAXParseException; systemId: file:/E:/MyWork/Java/apache-tomcat-9.0.6/webapps/Servlets2/WEB-INF/web.xml; lineNumber: 1; columnNumber: 1; Premature end of file.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1439)
+	at org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml(WebXmlParser.java:119)
+	at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1107)
+	at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:765)
+	at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:299)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4939)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:742)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:718)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:703)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1142)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1876)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1054)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:428)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1586)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:308)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:966)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:839)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1427)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1417)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:258)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:770)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:682)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:353)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:493)
+
+20-Mar-2018 00:13:29.021 SEVERE [main] org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml Parse error in application web.xml file at [file:/E:/MyWork/Java/apache-tomcat-9.0.6/webapps/Servlets2/WEB-INF/web.xml]
+ org.xml.sax.SAXParseException; systemId: file:/E:/MyWork/Java/apache-tomcat-9.0.6/webapps/Servlets2/WEB-INF/web.xml; lineNumber: 1; columnNumber: 1; Premature end of file.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1439)
+	at org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml(WebXmlParser.java:119)
+	at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1107)
+	at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:765)
+	at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:299)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4939)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:742)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:718)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:703)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1142)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:1876)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source)
+	at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:1054)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:428)
+	at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1586)
+	at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:308)
+	at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:123)
+	at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:424)
+	at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:367)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:966)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:839)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1427)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1417)
+	at java.base/java.util.concurrent.FutureTask.run(Unknown Source)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(Unknown Source)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:258)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:422)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:770)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:682)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:353)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:493)
+
+20-Mar-2018 00:13:29.025 SEVERE [main] org.apache.tomcat.util.descriptor.web.WebXmlParser.parseWebXml Occurred at line [1] column [1]
+20-Mar-2018 00:13:29.031 SEVERE [main] org.apache.catalina.startup.ContextConfig.configureStart Marking this application unavailable due to previous error(s)
+20-Mar-2018 00:13:29.032 SEVERE [main] org.apache.catalina.core.StandardContext.startInternal One or more components marked the context as not correctly configured
+20-Mar-2018 00:13:29.033 SEVERE [main] org.apache.catalina.core.StandardContext.startInternal Context [/Servlets2] startup failed due to previous errors
+20-Mar-2018 00:13:29.048 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\Servlets2] has finished in [59] ms
+20-Mar-2018 00:13:29.053 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:13:29.072 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+20-Mar-2018 00:13:29.080 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 1590 ms
+20-Mar-2018 00:15:38.073 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/9.0.6
+20-Mar-2018 00:15:38.084 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 5 2018 09:34:35 UTC
+20-Mar-2018 00:15:38.084 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         9.0.6.0
+20-Mar-2018 00:15:38.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+20-Mar-2018 00:15:38.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+20-Mar-2018 00:15:38.085 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+20-Mar-2018 00:15:38.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jre-9.0.1
+20-Mar-2018 00:15:38.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           9.0.1+11
+20-Mar-2018 00:15:38.086 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+20-Mar-2018 00:15:38.087 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:15:38.087 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:15:38.088 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+20-Mar-2018 00:15:38.088 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+20-Mar-2018 00:15:38.089 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=E:\MyWork\Java\apache-tomcat-9.0.6\conf\logging.properties
+20-Mar-2018 00:15:38.090 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+20-Mar-2018 00:15:38.091 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+20-Mar-2018 00:15:38.093 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+20-Mar-2018 00:15:38.098 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+20-Mar-2018 00:15:38.100 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:15:38.100 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=E:\MyWork\Java\apache-tomcat-9.0.6
+20-Mar-2018 00:15:38.101 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=E:\MyWork\Java\apache-tomcat-9.0.6\temp
+20-Mar-2018 00:15:38.102 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+20-Mar-2018 00:15:38.102 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+20-Mar-2018 00:15:38.103 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+20-Mar-2018 00:15:39.039 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+20-Mar-2018 00:15:39.117 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:15:39.247 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+20-Mar-2018 00:15:39.259 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+20-Mar-2018 00:15:39.263 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+20-Mar-2018 00:15:39.264 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 2137 ms
+20-Mar-2018 00:15:39.349 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+20-Mar-2018 00:15:39.353 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/9.0.6
+20-Mar-2018 00:15:39.370 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\docs]
+20-Mar-2018 00:15:40.002 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\docs] has finished in [631] ms
+20-Mar-2018 00:15:40.003 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\examples]
+20-Mar-2018 00:15:40.617 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\examples] has finished in [614] ms
+20-Mar-2018 00:15:40.620 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\host-manager]
+20-Mar-2018 00:15:40.817 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\host-manager] has finished in [197] ms
+20-Mar-2018 00:15:40.818 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\manager]
+20-Mar-2018 00:15:40.876 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\manager] has finished in [58] ms
+20-Mar-2018 00:15:40.877 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\ROOT]
+20-Mar-2018 00:15:40.922 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\ROOT] has finished in [45] ms
+20-Mar-2018 00:15:40.924 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\Servlets2]
+20-Mar-2018 00:15:41.144 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\Servlets2] has finished in [221] ms
+20-Mar-2018 00:15:41.150 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+20-Mar-2018 00:15:41.169 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+20-Mar-2018 00:15:41.175 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 1910 ms
+20-Mar-2018 00:37:11.959 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\projectname.war]
+20-Mar-2018 00:37:12.236 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [E:\MyWork\Java\apache-tomcat-9.0.6\webapps\projectname.war] has finished in [279] ms

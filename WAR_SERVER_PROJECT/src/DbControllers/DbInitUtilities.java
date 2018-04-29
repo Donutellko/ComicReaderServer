@@ -9,14 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import DbControllers.*;
-import Parsers.AcomicsParser;
-import Parsers.ComicslateParser;
-import Parsers.EnDilbertParser;
-import Parsers.EnSmbcParser;
-import Parsers.EnXkcdParser;
-import Parsers.ReadmangaParser;
-import Parsers.RuXkcdParser;
-import Parsers.UniversalParser;
 import AppUtilities.*;
 import ComicsDataLogic.ComicDB;
 
