@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ComicsDataLogic.*;
 import AppUtilities.JsonWorker;
-import AppUtilities.JsonWorker.ResponseInfo;
 
 /**
  * Servlet implementation class comicslist
@@ -46,7 +45,8 @@ public class ComicListServlet extends HttpServlet {
     	
     	// Response type
     	response.setCharacterEncoding("UTF8");
-    	response.setContentType("application/json"); // 
+    	response.setContentType("application/json");
+    	
     	
     	// Response storage
 		PrintWriter out = response.getWriter();
@@ -55,7 +55,8 @@ public class ComicListServlet extends HttpServlet {
     	try {
     		Long.parseLong(timestampStr);
     	} catch (NumberFormatException e) {
-    		writeRespJsonObject(out, 1, "Timestamp invalid format", null);
+    		formHeaders(response , 1, "Invalid timestamp given");
+    		writeRespJsonObject(out, null);
     		out.close();
 		}
     	
@@ -72,7 +73,8 @@ public class ComicListServlet extends HttpServlet {
 			rs = comicPS.executeQuery();
 			
 			// Forming response
-			writeRespJsonObject(out, 0, "Comics loaded", ComicDBContentGetter.getComics(rs));
+			formHeaders(response , 0, "Comics are loaded");
+			writeRespJsonObject(out, ComicDBContentGetter.getComics(rs));
 			out.close();
 		}
 		catch (SQLException e) {
@@ -82,24 +84,28 @@ public class ComicListServlet extends HttpServlet {
 		}
 	}
 
-    class ResponseJsonObject{
+
+	class ResponseJsonObject{
     	
-    	ResponseInfo responseCode;
     	List<Comic> comics;
     	
-    	ResponseJsonObject(ResponseInfo responseCode, List<Comic> comics){
-    		this.responseCode = responseCode;
+    	ResponseJsonObject(List<Comic> comics){
     		this.comics = comics;
     	}
     }
 
-    private void writeRespJsonObject(PrintWriter writer, int respCode, String respMsg, List<Comic> comics) {
-    	ResponseInfo responseInfo = new ResponseInfo(respCode, respMsg);
+    private void writeRespJsonObject(PrintWriter writer, List<Comic> comics) {
     	/*for (Comic c : comics) {
     		c.initUrl=null; // initUrl Донату не надо
     	}*/
-		ResponseJsonObject resp = new ResponseJsonObject(responseInfo, comics);
+		ResponseJsonObject resp = new ResponseJsonObject(comics);
 		String jsonedResponse = JsonWorker.toJson(resp);
 		writer.println(jsonedResponse);
     }
+    
+    private void formHeaders(HttpServletResponse response, int responseCode, String responseMsg) {
+    	response.setIntHeader("response_code", responseCode);
+		response.setHeader("response_message", responseMsg);
+		response.setHeader("Access-Control-Allow-Origin", "*");
+	}
 }

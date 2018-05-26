@@ -29,14 +29,5 @@ public class JsonWorker {
     	// 
     	return g.toJson(o);
     }
-    
-    public static class ResponseInfo {
-    	int responseCode;
-    	String responseMessage;
-    	
-    	public ResponseInfo(int responseCode, String responseMessage){
-    		this.responseCode = responseCode;
-    		this.responseMessage = responseMessage;
-    	}
-    }
+ 
 }
