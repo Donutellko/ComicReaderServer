@@ -1,6 +1,5 @@
 package xyz.donutellko.comicreaderserver;
 
-import Collections.AcomicsListParser;
 import Collections.MangalibListParser;
 import Collections.UniversalListParser;
 import Parsers.*;
@@ -21,13 +20,14 @@ public class Main {
 		parseArgs(args);
 
 		// testListParser(); if (true) return; // Тестирование работы парсеров коллекций
-		initDb();
+
+		DbConnectionOracle.initDb();
 
 		updateComicsList();
 
-		updateComicsPages();
+		//updateComicsPages();
 
-		closeDb();
+		DbConnectionOracle.closeDb();
 	}
 
 	private static void updateComicsList() {
@@ -79,7 +79,6 @@ public class Main {
 			DbConnection.initialise();
 		} catch (Exception e) { // SQLException, ClassNotFoundException
 			e.printStackTrace();
-			return;
 		}
 	}
 

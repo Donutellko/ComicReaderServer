@@ -24,7 +24,6 @@ public class MangalibListParser extends UniversalListParser {
             String tmp = html.substring(0, html.indexOf("</a"));
             list.add(foobar(tmp));
         }
-        list.remove(list.size() - 1);
         return list;
     }
 

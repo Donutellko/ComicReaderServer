@@ -2,10 +2,11 @@ package xyz.donutellko.comicreaderserver;
 
 import Parsers.UniversalParser;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import static xyz.donutellko.comicreaderserver.DbConnection.conn;
 import static xyz.donutellko.comicreaderserver.DbConnection.statmt;
 
 /**
@@ -73,10 +74,10 @@ public class ComicDB {
 	 * Добавляет комикс в список и создаёт для него таблицу.
 	 *
 	 * @throws SQLException в случае неудачи при добавлении в список
-	 */
+    */
+	/*
 	static void addComic(String title, String lang, String author, String source, String description,
 						 String main_url, String init_url, long timestamp) throws SQLException {
-
 		String sql = "insert into COMIC (TITLE, DESCRIPTION, AUTHOR, LANG, SOURCE, " +
 				"MAIN_URL, INIT_URL, LAST_UPDATE)";
 		sql +=  " values ("
@@ -89,9 +90,35 @@ public class ComicDB {
 				+ init_url + "', "
 				+ timestamp
 				+ ");";
-		statmt.execute(sql);
+		statmt.executeUpdate(sql);
 	}
+    */
 
+	// Создаю новое подключение, тк с conn из метода initialise отказывается работать
+    static void addComic(String title, String lang, String author, String source, String description,
+                         String main_url, String init_url, long timestamp) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@oraclebi.avalon.ru:1521:orcl12", "DANSHAF", "danshaf");
+        Statement statmt = conn.createStatement();
+        ResultSet rs = statmt.executeQuery("SELECT MAX(COMIC_ID) FROM COMIC");
+        rs.next();
+        int i = rs.getInt(1) + 1;
+        String sql = "insert into COMIC(COMIC_ID, TITLE, DESCRIPTION, AUTHOR, LANG, SOURCE, " +
+                "MAIN_URL, INIT_URL, LAST_UPDATE)";
+        sql +=  " values ("
+                + i + ", "
+                + "'" + escape(title) + "', '"
+                + escape(description) + "', '"
+                + escape(author) + "', '"
+                + lang + "', '"
+                + source + "', '"
+                + main_url + "', '"
+                + init_url + "', '"
+                + new SimpleDateFormat("dd.MM.YYYY").format(new Date(timestamp))
+                + "')";
+
+        statmt.executeUpdate(sql);
+        conn.close();
+    }
 	/**
 	 * Ищет в БД комикс с переданными параметрами
 	 *
