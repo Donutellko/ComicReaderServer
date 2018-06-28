@@ -1,8 +1,10 @@
 package Parsers;
 
-public class MangalibParser extends UniversalParser {
+import static xyz.donutellko.comicreaderserver.Util.*;
 
-    private String pagesList = getByBegin(html, "pages: [{", "]") + "{",
+public class MangalibParser extends SinglePageParser {
+
+    private String pageList = getByBegin(html, "pages: [{", "]") + "{",
             img = getByBegin(html, "\"og:image\" content=\"","\"/>"),
             nextChapter = getByBegin(html, "next: '", "'") + "/1";
 
@@ -11,14 +13,11 @@ public class MangalibParser extends UniversalParser {
     }
 
     @Override
-    protected String getAlias(){ return "mangalib"; }
+    public String getAlias(){ return "mangalib"; }
 
     @Override
     protected String getTitle(String html) {
-        if (html.contains("reader-chapters__chapter-name"))
-            return getByBegin(html, "class=\"reader-chapters__chapter-name\">: ", "</span>");
-        else
-            return "";
+        return getByBegin(html, "Читать мангу ", " . Легко и удобно");
     }
 
     @Override
@@ -31,15 +30,15 @@ public class MangalibParser extends UniversalParser {
     protected String getImgUrl(String html) {
         Integer n = Integer.parseInt(url.substring(url.lastIndexOf('/') + 1));
         for (Integer i = 1; i < n; i++)
-            pagesList = pagesList.substring(pagesList.indexOf("{") + 1);
-        return img.substring(0, img.lastIndexOf("/") + 1) + getByBegin(pagesList, "\"page_image\":\"","\"");
+            pageList = pageList.substring(pageList.indexOf("{") + 1);
+        return img.substring(0, img.lastIndexOf("/") + 1) + getByBegin(pageList, "\"page_image\":\"","\"");
     }
 
     @Override
     protected String getNextUrl(String html) {
-        pagesList = pagesList.substring(pagesList.indexOf("{") + 1);
-        if (pagesList.length() > 0) {
-            return url.substring(0, url.lastIndexOf("/") + 1) + getByBegin(pagesList, "\"page_slug\":", "}");
+        pageList = pageList.substring(pageList.indexOf("{") + 1);
+        if (pageList.length() > 0) {
+            return url.substring(0, url.lastIndexOf("/") + 1) + getByBegin(pageList, "\"page_slug\":", "}");
         }
         else if (nextChapter.compareTo("/1") != 0)
                 return nextChapter;

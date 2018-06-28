@@ -1,6 +1,8 @@
 package Parsers;
 
-public class EnDilbertParser extends UniversalParser {
+import static xyz.donutellko.comicreaderserver.Util.*;
+
+public class EnDilbertParser extends SinglePageParser {
 	EnDilbertParser(String url, String html) {
 		super(url, html);
 	}

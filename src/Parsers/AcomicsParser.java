@@ -1,7 +1,9 @@
 package Parsers;
 
+import static xyz.donutellko.comicreaderserver.Util.*;
+
 @SuppressWarnings("UnnecessaryLocalVariable")
-public class AcomicsParser extends UniversalParser {
+public class AcomicsParser extends SinglePageParser {
 
 	public AcomicsParser(String url, String html) {
 		super(url, html);

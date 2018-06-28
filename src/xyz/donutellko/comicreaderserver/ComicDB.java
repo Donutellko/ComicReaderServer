@@ -1,13 +1,12 @@
 package xyz.donutellko.comicreaderserver;
 
-import Parsers.UniversalParser;
+import Parsers.SinglePageParser;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static xyz.donutellko.comicreaderserver.DbConnection.conn;
-import static xyz.donutellko.comicreaderserver.DbConnection.statmt;
+import static xyz.donutellko.comicreaderserver.DbConnectionOracle.statmt;
 
 /**
  * Класс для взаимодействия с SQLite.
@@ -24,16 +23,20 @@ public class ComicDB {
 	static DbPage getLastPage(int comicId) {
 		try {
 			resSet = statmt.executeQuery("select * from COMIC_" + comicId +
-					" where PAGE_NUMBER=(select max(PAGE_NUMBER) from COMIC_" + comicId + ");");
-			DbPage p = new DbPage(resSet);
-
-			return p;
+					" where PAGE_NUMBER=(select max(PAGE_NUMBER) from COMIC_" + comicId + ")");
+			if (resSet.next()) {
+                DbPage p = new DbPage(resSet);
+                return p;
+            }
+            else
+                return null;
 		} catch (SQLException e) {
-			if (e.getMessage().contains("No"))
-				System.out.println("No such table COMIC_" + comicId);
-			else
-				System.out.println("Failed to get last page for COMIC_ID="
-						+ comicId + "\n" + e.getMessage());
+            if (e.getMessage().contains("No"))
+                System.out.println("No such table COMIC_" + comicId);
+            else {
+                System.out.println("Failed to get last page for COMIC_ID="
+                        + comicId + "\n" + e.getMessage());
+        }
 		}
 		return null;
 	}
@@ -93,19 +96,15 @@ public class ComicDB {
 		statmt.executeUpdate(sql);
 	}
     */
-
-	// Создаю новое подключение, тк с conn из метода initialise отказывается работать
     static void addComic(String title, String lang, String author, String source, String description,
                          String main_url, String init_url, long timestamp) throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@oraclebi.avalon.ru:1521:orcl12", "DANSHAF", "danshaf");
-        Statement statmt = conn.createStatement();
         ResultSet rs = statmt.executeQuery("SELECT MAX(COMIC_ID) FROM COMIC");
         rs.next();
-        int i = rs.getInt(1) + 1;
+        int id = rs.getInt(1) + 1;
         String sql = "insert into COMIC(COMIC_ID, TITLE, DESCRIPTION, AUTHOR, LANG, SOURCE, " +
                 "MAIN_URL, INIT_URL, LAST_UPDATE)";
         sql +=  " values ("
-                + i + ", "
+                + id + ", "
                 + "'" + escape(title) + "', '"
                 + escape(description) + "', '"
                 + escape(author) + "', '"
@@ -115,9 +114,10 @@ public class ComicDB {
                 + init_url + "', '"
                 + new SimpleDateFormat("dd.MM.YYYY").format(new Date(timestamp))
                 + "')";
-
-        statmt.executeUpdate(sql);
-        conn.close();
+        try {
+            statmt.executeUpdate(sql);
+        }
+        catch (Exception e) { System.out.println(e.getMessage()); }
     }
 	/**
 	 * Ищет в БД комикс с переданными параметрами
@@ -130,7 +130,7 @@ public class ComicDB {
 	 */
 	public static int getComicId(String title, String lang, String source) throws SQLException {
 		resSet = statmt.executeQuery("select COMIC_ID from COMIC where (" +
-				"TITLE='" + title + "', LANG='" + lang + "', SOURCE='" + source + "');");
+				"TITLE='" + title + "', LANG='" + lang + "', SOURCE='" + source + "')");
 		return resSet.getInt("COMIC_ID");
 	}
 
@@ -152,10 +152,13 @@ public class ComicDB {
 	 */
 	static void addPage(int comicId, String title, String desription, String imageUrl,
 						String pageUrl, String bonusUrl) throws SQLException {
+        ResultSet rs = statmt.executeQuery("SELECT MAX(PAGE_NUMBER) FROM COMIC_" + comicId);
+        rs.next();
+        int page_num = rs.getInt(1) + 1;
 		String sql = "insert into COMIC_" + comicId
-				+ " (TITLE, DESCRIPTION, IMAGE_URL, PAGE_URL, BONUS_URL) values ('" +
-				escape(title) + "', '" + escape(desription) + "', '"
-				+ imageUrl + "', '" + pageUrl + "', '" + bonusUrl + "');";
+				+ " (PAGE_NUMBER, TITLE, DESCRIPTION, IMAGE_URL, PAGE_URL, BONUS_URL) values (" +
+				+ page_num + ", '" + escape(title) + "', '" + escape(desription) + "', '"
+				+ imageUrl + "', '" + pageUrl + "', '" + bonusUrl + "')";
 		statmt.execute(sql);
 	}
 
@@ -176,17 +179,21 @@ public class ComicDB {
 	 */
 	static void createPagesTable(int comicId) {
 		try {
-			statmt.execute("CREATE TABLE IF NOT EXISTS COMIC_" + comicId + " (\n" +
-					"PAGE_NUMBER INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-					"TITLE TEXT(50),\n" +
-					"DESCRIPTION TEXT (100),\n" +
-					"PAGE_URL TEXT NOT NULL unique,\n" +
-					"IMAGE_URL TEXT NOT NULL,\n" +
-					"BONUS_URL TEXT" +
-					");");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+            statmt.execute("CREATE TABLE COMIC_" + comicId + " (\n" +
+                    "PAGE_NUMBER INTEGER PRIMARY KEY,\n" +
+                    "TITLE VARCHAR2(200),\n" +
+                    "DESCRIPTION VARCHAR2(100),\n" +
+                    "PAGE_URL VARCHAR2(200) NOT NULL UNIQUE,\n" +
+                    "IMAGE_URL VARCHAR2(200) NOT NULL,\n" +
+                    "BONUS_URL VARCHAR2(200)" +
+                    ")");
+        }
+		catch (Exception e){
+            if (e.getMessage().contains("existing"))
+                System.out.println("Table COMIC_" + comicId + " already exists");
+            else
+                e.printStackTrace();
+        }
 	}
 
 	public static void addComicList(List <Comic> list) {
@@ -231,7 +238,7 @@ public class ComicDB {
 			this.bonusUrl = resSet.getString("BONUS_URL");
 		}
 
-		DbPage(UniversalParser.ParsedPage p) {
+		DbPage(SinglePageParser.ParsedPage p) {
 			title = p.title;
 			description = p.description;
 			thisUrl = p.thisUrl;

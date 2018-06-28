@@ -1,6 +1,8 @@
 package Parsers;
 
-public class RuXkcdParser extends UniversalParser {
+import static xyz.donutellko.comicreaderserver.Util.*;
+
+public class RuXkcdParser extends SinglePageParser {
 	RuXkcdParser(String url, String html) {
 		super(url, html);
 	}

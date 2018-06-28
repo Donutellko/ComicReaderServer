@@ -130,7 +130,7 @@ public class DbPeriodicUpdater extends TimerTask {
 		String nextUrl = initUrl;
 		
 		/*if (page != null && page.thisUrl != null) {
-			//UniversalParser.ParsedPage p = ;
+			//SinglePageParser.ParsedPage p = ;
 			nextUrl = getPage(tClass, page.thisUrl).nextUrl;
 		}*/
 
@@ -176,7 +176,7 @@ public class DbPeriodicUpdater extends TimerTask {
     private static <T extends UniversalParser> UniversalParser.ParsedPage getPage(Class<T> tClass, String url) {
     	String html = HttpWorker.getHtml(url);
 		if (html != null && html.length() > 0) try {
-			//UniversalParser.ParsedPage parsedPage = tClass.getDeclaredConstructor(String.class).newInstance(html).getParsedPage();
+			//SinglePageParser.ParsedPage parsedPage = tClass.getDeclaredConstructor(String.class).newInstance(html).getParsedPage();
 			Constructor c = tClass.getDeclaredConstructor(String.class, String.class);
 			c.setAccessible(true);
 			UniversalParser.ParsedPage parsedPage = ((UniversalParser) c.newInstance(url, html)).getParsedPage();

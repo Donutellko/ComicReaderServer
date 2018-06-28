@@ -1,6 +1,6 @@
 package xyz.donutellko.comicreaderserver;
 
-import Parsers.UniversalParser;
+import Parsers.SinglePageParser;
 
 @SuppressWarnings("WeakerAccess")
 
@@ -35,15 +35,16 @@ public class Comic {
 
 	/**
 	 * Класс страницы комикса.
-	 * Подразумевается, что он создаётся исключительно во время парсинга из UniversalParser
-	 * @see UniversalParser.ParsedPage
+	 * Подразумевается, что он создаётся исключительно во время парсинга из SinglePageParser
+	 * @see SinglePageParser.ParsedPage
 	 */
+	/*
 	public static class Page {
 		public String title, description, this_url, img_url, bonus_url;
 		public int number;
 		public long timestamp;
 
-		public Page(int number, UniversalParser.ParsedPage page) {
+		public Page(int number, SinglePageParser.ParsedPage page) {
 			this.number = number;
 			this.title	   = page.title;
 			this.description = page.description;
@@ -57,6 +58,7 @@ public class Comic {
 			timestamp = System.currentTimeMillis();
 		}
 	}
+	*/
 }
 
 /*

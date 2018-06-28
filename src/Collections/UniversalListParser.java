@@ -4,7 +4,7 @@ import xyz.donutellko.comicreaderserver.*;
 
 import java.util.ArrayList;
 
-public abstract class UniversalListParser extends AbstractParser {
+public abstract class UniversalListParser {
 
 	protected String url, html;
 
@@ -13,6 +13,7 @@ public abstract class UniversalListParser extends AbstractParser {
 		this.html = html;
 	}
 
+	public abstract String getAlias();
 	protected abstract ArrayList<Comic> getComicList(String html);
 	protected abstract String getNextUrl(String html);
 

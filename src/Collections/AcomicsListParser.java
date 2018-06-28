@@ -1,6 +1,7 @@
 package Collections;
 
 import xyz.donutellko.comicreaderserver.Comic;
+import static xyz.donutellko.comicreaderserver.Util.*;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,12 @@ public class AcomicsListParser extends UniversalListParser {
 	}
 
 	@Override
-	ArrayList<Comic> getComicList(String html) {
+    public String getAlias() {
+	    return "acomics";
+	}
+
+	@Override
+	protected ArrayList<Comic> getComicList(String html) {
 		ArrayList<Comic> list = new ArrayList <>();
 		int a;
 		html = html.substring(html.indexOf("\"catdata1\"") + 1);
@@ -33,9 +39,6 @@ public class AcomicsListParser extends UniversalListParser {
 			String tmp = html.substring(0, html.indexOf("</tr"));
 			list.add(foobar(tmp));
 		} while (a > 0);
-
-		list.remove(list.size() - 1); // КОСТЫЛИЩЕ ДИЧАЙШИЙ, так как по какой-то
-		// причине последний комикс на странице появляется дважды
 		return list;
 	}
 

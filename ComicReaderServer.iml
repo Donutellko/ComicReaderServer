@@ -10,5 +10,6 @@
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.1" level="project" />
     <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.21.0.1" level="project" />
     <orderEntry type="library" name="ojdbc8" level="project" />
+    <orderEntry type="library" name="selenium-server-standalone-3.13.0" level="project" />
   </component>
 </module>

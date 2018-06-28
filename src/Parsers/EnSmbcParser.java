@@ -1,6 +1,8 @@
 package Parsers;
 
-public class EnSmbcParser extends UniversalParser {
+import static xyz.donutellko.comicreaderserver.Util.*;
+
+public class EnSmbcParser extends SinglePageParser {
 
 /*
 title: <title>Saturday Morning Breakfast Cereal - Know Your Linguistic Philosophies</title>

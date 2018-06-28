@@ -1,6 +1,8 @@
 package Parsers;
 
-public class EnXkcdParser extends UniversalParser {
+import static xyz.donutellko.comicreaderserver.Util.*;
+
+public class EnXkcdParser extends SinglePageParser {
 
 /*
 <li><a rel="next" href="/2/" accesskey="n">Next &gt;</a></li>
@@ -24,18 +26,18 @@ public class EnXkcdParser extends UniversalParser {
 
 	@Override
 	protected String getTitle(String html) {
-		return UniversalParser.getByBegin(html, "<title>xkcd: ", "</title>");
+		return getByBegin(html, "<title>xkcd: ", "</title>");
 	}
 
 	@Override
 	protected String getDescription(String html) {
-		String tmp = UniversalParser.getByBegin(html, "<div id=\"comic\">", "</div>");
-		return UniversalParser.getByBegin(tmp, "title=\"", "\" alt=");
+		String tmp = getByBegin(html, "<div id=\"comic\">", "</div>");
+		return getByBegin(tmp, "title=\"", "\" alt=");
 	}
 
 	@Override
 	protected String getImgUrl(String html) {
-		return UniversalParser.getByBegin(html, "Image URL (for hotlinking/embedding): ","\n");
+		return getByBegin(html, "Image URL (for hotlinking/embedding): ","\n");
 	}
 
 	@Override
@@ -45,7 +47,7 @@ public class EnXkcdParser extends UniversalParser {
 
 	@Override
 	protected String getNextUrl(String html) {
-		String tmp = UniversalParser.getByBegin(html, "<a rel=\"next\" href=\"", "/\" accesskey=\"n\">");
+		String tmp = getByBegin(html, "<a rel=\"next\" href=\"", "/\" accesskey=\"n\">");
 		return tmp == null ? null : BASE_URL + tmp;
 	}
 
