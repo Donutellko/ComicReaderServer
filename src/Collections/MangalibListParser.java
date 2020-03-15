@@ -1,6 +1,7 @@
 package Collections;
 
 import xyz.donutellko.comicreaderserver.Comic;
+import static xyz.donutellko.comicreaderserver.Util.*;
 
 import java.util.ArrayList;
 
@@ -14,17 +15,21 @@ public class MangalibListParser extends UniversalListParser {
     public final static String INITIAL_URL = "https://mangalib.me/manga-list?page=1";
 
     @Override
+    public String getAlias(){
+        return "mangalib";
+    }
+
+    @Override
     protected ArrayList<Comic> getComicList(String html) {
         ArrayList<Comic> list = new ArrayList <>();
-        int a;
-        a = html.indexOf("\"manga-list-item\"");
-        while (a > 0) {
-            html = html.substring(a + 1);
-            a = html.indexOf("\"manga-list-item\"");
+        int cursor;
+        cursor = html.indexOf("\"manga-list-item\"");
+        while (cursor > 0) {
+            html = html.substring(cursor + 1);
+            cursor = html.indexOf("\"manga-list-item\"");
             String tmp = html.substring(0, html.indexOf("</a"));
             list.add(foobar(tmp));
         }
-        list.remove(list.size() - 1);
         return list;
     }
 
@@ -46,7 +51,7 @@ public class MangalibListParser extends UniversalListParser {
 
     @Override
     protected String getNextUrl(String html) {
-        if (Integer.parseInt(url.substring(url.lastIndexOf('=') + 1)) < 6)
+        if (Integer.parseInt(url.substring(url.lastIndexOf('=') + 1)) < 6) // без js доходит только до 6-й страницы
             return url.substring(0, url.lastIndexOf('=') + 1) + (Integer.parseInt(url.substring(url.lastIndexOf('=') + 1)) + 1);
         else
             return null;

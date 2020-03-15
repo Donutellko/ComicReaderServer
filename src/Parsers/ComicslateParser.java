@@ -1,6 +1,8 @@
 package Parsers;
 
-public class ComicslateParser extends UniversalParser {
+import static xyz.donutellko.comicreaderserver.Util.*;
+
+public class ComicslateParser extends SinglePageParser {
 	public ComicslateParser(String url, String html) {
 		super(url, html);
 	}
@@ -16,13 +18,14 @@ public class ComicslateParser extends UniversalParser {
 		if (tmp == null) return "";
 		int a = tmp.indexOf("<p>") + "<p>".length();
 		int b = tmp.indexOf("</p");
-		return a > 0 && b > 0 ? tmp.substring(a, b) : "";
+		return a > 0 && b > 0 ? tmp.substring(a, b) : null;
 	}
 
 	@Override
 	protected String getDescription(String html) {
 		return "";
 	}
+
 	@Override
 	protected String getImgUrl(String html) {
 		String tmp = html.substring(html.indexOf("</table>"));

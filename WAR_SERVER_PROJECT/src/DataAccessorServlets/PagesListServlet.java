@@ -18,11 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import AppUtilities.JsonWorker;
-import AppUtilities.JsonWorker.ResponseInfo;
+
 import ComicsDataLogic.Comic;
 import ComicsDataLogic.ComicDB;
 import ComicsDataLogic.ComicDBContentGetter;
-import DataAccessorServlets.ComicListServlet.ResponseJsonObject;
 import DbControllers.DbConnectionManager;
 
 /**
@@ -59,7 +58,8 @@ public class PagesListServlet extends HttpServlet {
     		timestamp = Long.parseLong(timestampStr);
     		lastPage = Integer.parseInt(lastPageStr);
     	} catch (Exception e){
-    		writeRespJsonObject(out, 1, "Invalid params", 0, null);
+    		formHeaders(response, 1, "Invalid params");
+    		writeRespJsonObject(out, 0, null);
     		out.close();
     		return;
     	}
@@ -73,7 +73,9 @@ public class PagesListServlet extends HttpServlet {
 			rs = ComicDB.getPagesAfter(comicId, lastPage, timestamp);
 			List<Comic.Page> pages = ComicDBContentGetter.getPages(rs);
 			
-			writeRespJsonObject(out, 0, "Pages loaded", pages.size(), pages);
+			// output
+			formHeaders(response, 0, "Pages loaded");
+			writeRespJsonObject(out, pages.size(), pages);
 			out.close();
 		}
 		catch (SQLException e) {
@@ -84,24 +86,27 @@ public class PagesListServlet extends HttpServlet {
     
     class ResponseJsonObject{
     	
-    	ResponseInfo responseCode;
     	int selectedPagesCount;
     	//int totalPagesCount;
     	List<Comic.Page> pages;
     	
     	
-    	ResponseJsonObject(ResponseInfo responseCode, int pagesNumber, List<Comic.Page> pages){
-    		this.responseCode = responseCode;
+    	ResponseJsonObject(int pagesNumber, List<Comic.Page> pages){
     		this.selectedPagesCount = pagesNumber;
     		this.pages = pages;
     	}
     }
 
-    private void writeRespJsonObject(PrintWriter writer, int respCode, String respMsg, int pagesNumber, List<Comic.Page> pages) {
-    	ResponseInfo responseInfo = new ResponseInfo(respCode, respMsg);
-		ResponseJsonObject resp = new ResponseJsonObject(responseInfo, pagesNumber, pages);
+    private void writeRespJsonObject(PrintWriter writer, int pagesNumber, List<Comic.Page> pages) {
+		ResponseJsonObject resp = new ResponseJsonObject(pagesNumber, pages);
 		String jsonedResponse = JsonWorker.toJson(resp);
 		writer.println(jsonedResponse);
     }
+    
+    private void formHeaders(HttpServletResponse response, int responseCode, String responseMsg) {
+    	response.setIntHeader("response_code", responseCode);
+		response.setHeader("response_message", responseMsg);
+		response.setHeader("Access-Control-Allow-Origin", "*");
+	}
     
 }
