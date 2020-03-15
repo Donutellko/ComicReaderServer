@@ -23,7 +23,7 @@ public class AcomicsListParser extends UniversalListParser {
 	}
 
 	@Override
-	ArrayList<Comic> getComicList(String html) {
+	protected ArrayList<Comic> getComicList(String html) {
 		ArrayList<Comic> list = new ArrayList <>();
 		int a;
 		html = html.substring(html.indexOf("\"catdata1\"") + 1);
